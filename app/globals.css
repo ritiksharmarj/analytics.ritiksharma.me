@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-inter: var(--font-inter-sans);
+  --font-inter: var(--font-inter-var);
 
   --color-background: oklch(1 0 0);
   --color-foreground: oklch(0.141 0.005 285.823);
