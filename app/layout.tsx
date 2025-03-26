@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
-  variable: "--font-inter",
+  variable: "--font-inter-sans",
   subsets: ["latin"],
 });
 
@@ -18,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable}`}>{children}</body>
+    <html lang="en" className={`${inter.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
