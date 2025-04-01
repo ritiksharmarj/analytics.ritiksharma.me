@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-inter: var(--font-inter-sans);
+  --font-sans: var(--font-inter);
 
   --color-background: oklch(1 0 0);
   --color-foreground: oklch(0.141 0.005 285.823);
@@ -37,6 +37,6 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground font-sans;
   }
 }
