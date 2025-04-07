@@ -17,7 +17,6 @@ const eslintConfig = [
       "node_modules",
       ".next",
       "build",
-      "public",
       "yarn.lock",
       "pnpm-lock.yaml",
       "package-lock.json",

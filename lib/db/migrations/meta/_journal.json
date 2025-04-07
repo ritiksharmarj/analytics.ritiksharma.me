@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1744006090359,
-      "tag": "0000_glossy_solo",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1744007415730,
-      "tag": "0001_fuzzy_preak",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1744008544430,
-      "tag": "0002_hot_overlord",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1744008857308,
-      "tag": "0003_cheerful_skullbuster",
+      "when": 1744039697063,
+      "tag": "0000_short_zzzax",
       "breakpoints": true
     }
   ]
