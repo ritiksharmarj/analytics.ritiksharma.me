@@ -1,8 +1,11 @@
-import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import websites from "./websites";
+import { nanoid } from "nanoid";
 
 const pageviews = pgTable("pageviews", {
-  id: uuid("id").defaultRandom().primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .$default(() => nanoid()),
   host: text("host").notNull(),
   path: text("path").notNull(),
   screenSize: text("screen_size"),
@@ -10,7 +13,7 @@ const pageviews = pgTable("pageviews", {
   userAgent: text("user_agent"),
   referrer: text("referrer"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
-  websiteId: uuid("website_id")
+  websiteId: text("website_id")
     .notNull()
     .references(() => websites.id, { onDelete: "cascade" }),
 });
