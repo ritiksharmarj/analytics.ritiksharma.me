@@ -1,14 +1,13 @@
 import { pgTable } from "drizzle-orm/pg-core";
 import * as t from "drizzle-orm/pg-core";
 
-const users = pgTable("users", {
+const verifications = pgTable("verifications", {
   id: t.serial("id").primaryKey(),
-  name: t.text("name"),
-  email: t.text("email").notNull().unique(),
-  emailVerified: t.boolean("email_verified").notNull(),
-  image: t.text("image"),
+  identifier: t.text("identifier").notNull(),
+  value: t.text("value").notNull(),
+  expiresAt: t.timestamp("expires_at").notNull(),
   createdAt: t.timestamp("created_at").notNull().defaultNow(),
   updatedAt: t.timestamp("updated_at").notNull().defaultNow(),
 });
 
-export default users;
+export default verifications;

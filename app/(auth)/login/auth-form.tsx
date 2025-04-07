@@ -20,7 +20,7 @@ export const AuthForm = () => {
   const onGoogleSignIn = async () => {
     await signIn.social({
       provider: "google",
-      callbackURL: "",
+      callbackURL: "/dashboard",
       fetchOptions: {
         onResponse: () => {
           setIsPending(false);
