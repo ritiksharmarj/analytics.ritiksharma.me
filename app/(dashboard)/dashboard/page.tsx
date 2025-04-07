@@ -9,5 +9,5 @@ export default async function DashboardPage() {
 
   if (!session) redirect("/login");
 
-  return <div>dashboard</div>;
+  return <h1>dashboard</h1>;
 }
