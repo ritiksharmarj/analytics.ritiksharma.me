@@ -64,7 +64,7 @@ export const AppHeader = () => {
               await signOut({
                 fetchOptions: {
                   onSuccess() {
-                    router.push("/login");
+                    router.push("/");
                   },
                 },
               });

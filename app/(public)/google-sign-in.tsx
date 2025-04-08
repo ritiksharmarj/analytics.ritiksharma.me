@@ -29,12 +29,7 @@ export const GoogleSignIn = () => {
   };
 
   return (
-    <Button
-      variant="outline"
-      className="w-full"
-      onClick={onGoogleSignIn}
-      disabled={isPending}
-    >
+    <Button variant="outline" onClick={onGoogleSignIn} disabled={isPending}>
       {isPending ? <Loader2Icon className="animate-spin" /> : <GoogleIcon />}
       Continue with Google
     </Button>

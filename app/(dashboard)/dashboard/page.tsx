@@ -21,7 +21,7 @@ export default async function DashboardPage() {
     headers: await headers(),
   });
 
-  if (!session) redirect("/login");
+  if (!session) redirect("/");
 
   return (
     <div>
