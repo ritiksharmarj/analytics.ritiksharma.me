@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { auth } from "@/lib/auth";
+import { ROUTES } from "@/lib/routes";
 import { PlusIcon } from "lucide-react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -21,7 +22,7 @@ export default async function DashboardPage() {
     headers: await headers(),
   });
 
-  if (!session) redirect("/");
+  if (!session) redirect(ROUTES.ROOT);
 
   return (
     <div>

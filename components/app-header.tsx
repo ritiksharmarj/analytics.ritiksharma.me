@@ -14,6 +14,7 @@ import {
 } from "./ui/dropdown-menu";
 import { signOut, useSession } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
+import { ROUTES } from "@/lib/routes";
 
 export const AppHeader = () => {
   const router = useRouter();
@@ -64,7 +65,7 @@ export const AppHeader = () => {
               await signOut({
                 fetchOptions: {
                   onSuccess() {
-                    router.push("/");
+                    router.push(ROUTES.ROOT);
                   },
                 },
               });

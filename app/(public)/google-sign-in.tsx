@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { signIn } from "@/lib/auth/client";
 import { Loader2Icon } from "lucide-react";
 import { toast } from "sonner";
+import { ROUTES } from "@/lib/routes";
 
 export const GoogleSignIn = () => {
   const [isPending, setIsPending] = React.useState(false);
@@ -13,7 +14,7 @@ export const GoogleSignIn = () => {
   const onGoogleSignIn = async () => {
     await signIn.social({
       provider: "google",
-      callbackURL: "/dashboard",
+      callbackURL: ROUTES.DASHBOARD,
       fetchOptions: {
         onResponse: () => {
           setIsPending(false);
