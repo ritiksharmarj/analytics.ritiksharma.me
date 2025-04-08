@@ -46,21 +46,19 @@ export const AuthForm = () => {
         </CardHeader>
 
         <CardContent>
-          <div className="grid gap-4">
-            <Button
-              variant="outline"
-              className="w-full"
-              onClick={onGoogleSignIn}
-              disabled={isPending}
-            >
-              {isPending ? (
-                <Loader2Icon className="animate-spin" />
-              ) : (
-                <GoogleIcon />
-              )}
-              Continue with Google
-            </Button>
-          </div>
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={onGoogleSignIn}
+            disabled={isPending}
+          >
+            {isPending ? (
+              <Loader2Icon className="animate-spin" />
+            ) : (
+              <GoogleIcon />
+            )}
+            Continue with Google
+          </Button>
         </CardContent>
       </Card>
     </div>
