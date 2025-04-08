@@ -12,11 +12,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { signOut } from "@/lib/auth/client";
+import { signOut, useSession } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
 
 export const AppHeader = () => {
   const router = useRouter();
+  const { data } = useSession();
 
   return (
     <div className="flex h-20 items-center justify-between">
@@ -24,10 +25,13 @@ export const AppHeader = () => {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-            <Avatar className="h-8 w-8">
-              <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-              <AvatarFallback>SC</AvatarFallback>
+          <Button variant="ghost" className="relative size-8 rounded-full">
+            <Avatar className="size-8">
+              <AvatarImage
+                src={data?.user.image || undefined}
+                alt={data?.user.name}
+              />
+              <AvatarFallback>{data?.user.name.charAt(0)}</AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
@@ -35,9 +39,11 @@ export const AppHeader = () => {
         <DropdownMenuContent className="w-56" align="end">
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm leading-none font-medium">shadcn</p>
-              <p className="text-muted-foreground text-xs leading-none">
-                m@example.com
+              <p className="truncate text-sm leading-none font-medium">
+                {data?.user.name}
+              </p>
+              <p className="text-muted-foreground truncate text-xs leading-none">
+                {data?.user.email}
               </p>
             </div>
           </DropdownMenuLabel>
