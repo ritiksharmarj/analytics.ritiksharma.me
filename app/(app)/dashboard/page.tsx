@@ -39,10 +39,9 @@ export default async function DashboardPage() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
-                <DialogTitle>Edit profile</DialogTitle>
+                <DialogTitle>Add website</DialogTitle>
                 <DialogDescription>
-                  Make changes to your profile here. Click save when you&apos;re
-                  done.
+                  Add your website here. Click save when you&apos;re done.
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4">
@@ -63,7 +62,7 @@ export default async function DashboardPage() {
                 <DialogClose asChild>
                   <Button variant="outline">Cancel</Button>
                 </DialogClose>
-                <Button type="submit">Save changes</Button>
+                <Button type="submit">Save</Button>
               </DialogFooter>
             </DialogContent>
           </form>
