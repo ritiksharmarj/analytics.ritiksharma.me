@@ -12,7 +12,8 @@
     "prettier": "prettier --write .",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "tsx lib/db/seed.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",
@@ -26,6 +27,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.41.0",
+    "drizzle-seed": "^0.3.1",
     "lucide-react": "^0.484.0",
     "nanoid": "^5.1.5",
     "next": "15.2.4",
