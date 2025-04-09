@@ -1,6 +1,5 @@
 [
   {
-    "host": "ritiksharma.me",
     "path": "/",
     "screenSize": "1920x1080",
     "countryCode": "US",
@@ -8,7 +7,6 @@
     "referrer": "https://google.com"
   },
   {
-    "host": "ritiksharma.me",
     "path": "/blog",
     "screenSize": "1440x900",
     "countryCode": "CA",
@@ -16,7 +14,6 @@
     "referrer": "https://ritiksharma.me/"
   },
   {
-    "host": "ritiksharma.me",
     "path": "/projects",
     "screenSize": "2560x1440",
     "countryCode": "IN",
@@ -24,7 +21,6 @@
     "referrer": "https://twitter.com"
   },
   {
-    "host": "ritiksharma.me",
     "path": "/about",
     "screenSize": "1280x720",
     "countryCode": "UK",
@@ -32,7 +28,6 @@
     "referrer": ""
   },
   {
-    "host": "ritiksharma.me",
     "path": "/blog/first-post",
     "screenSize": "1366x768",
     "countryCode": "DE",
@@ -40,7 +35,6 @@
     "referrer": "https://ritiksharma.me/blog"
   },
   {
-    "host": "ritiksharma.me",
     "path": "/contact",
     "screenSize": "768x1024",
     "countryCode": "JP",
@@ -48,7 +42,6 @@
     "referrer": "https://linkedin.com"
   },
   {
-    "host": "ritiksharma.me",
     "path": "/",
     "screenSize": "1920x1080",
     "countryCode": "AU",
@@ -56,7 +49,6 @@
     "referrer": "https://github.com"
   },
   {
-    "host": "ritiksharma.me",
     "path": "/tech-stack",
     "screenSize": "360x640",
     "countryCode": "FR",
