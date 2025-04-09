@@ -15,6 +15,13 @@
       "when": 1744188692316,
       "tag": "0001_concerned_bishop",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1744210124715,
+      "tag": "0002_right_mojo",
+      "breakpoints": true
     }
   ]
 }
