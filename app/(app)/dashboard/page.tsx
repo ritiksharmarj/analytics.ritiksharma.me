@@ -16,6 +16,8 @@ import { ROUTES } from "@/lib/routes";
 import { PlusIcon } from "lucide-react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import * as React from "react";
+import { WebsiteFeed } from "../_components/website-feed";
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({
@@ -33,7 +35,7 @@ export default async function DashboardPage() {
         <Dialog>
           <form>
             <DialogTrigger asChild>
-              <Button variant="outline">
+              <Button>
                 <PlusIcon /> Add website
               </Button>
             </DialogTrigger>
@@ -70,6 +72,11 @@ export default async function DashboardPage() {
       </div>
 
       {/* list */}
+      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <React.Suspense fallback={<p>Loading websites...</p>}>
+          <WebsiteFeed />
+        </React.Suspense>
+      </div>
     </div>
   );
 }
