@@ -1,6 +1,8 @@
 import { StatsFeed } from "@/components/app/domain/stats-feed";
+import { TopCountriesFeed } from "@/components/app/domain/top-countries-feed";
 import { TopPagesFeed } from "@/components/app/domain/top-pages-feed";
 import { TopReferrersFeed } from "@/components/app/domain/top-referrers-feed";
+import { TopScreenSizesFeed } from "@/components/app/domain/top-screen-feed";
 import { StatsFeedSkeleton, TopFeedSkeleton } from "@/components/skeleton";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
@@ -20,116 +22,6 @@ export default async function DomainPage({
 
   if (!website) notFound();
 
-  // // Get analytics data
-  // const pageviews = await getAnalyticsData(website.id);
-
-  // // Calculate total pageviews
-  // const totalPageviews = pageviews.length;
-
-  // const uniquePaths = new Set(pageviews.map((pv) => pv.path)).size;
-
-  // // Calculate unique referrers (excluding empty ones)
-  // const uniqueReferrers = new Set(
-  //   pageviews
-  //     .map((pv) => pv.referrer)
-  //     .filter((ref) => ref && ref.trim() !== ""),
-  // ).size;
-
-  // // Calculate unique countries
-  // const uniqueCountries = new Set(
-  //   pageviews.map((pv) => pv.countryCode).filter(Boolean),
-  // ).size;
-
-  // // Prepare pageviews by day data
-  // const pageviewsByDay = pageviews.reduce(
-  //   (acc, pv) => {
-  //     const day = format(new Date(pv.createdAt), "MMM dd");
-  //     acc[day] = (acc[day] || 0) + 1;
-  //     return acc;
-  //   },
-  //   {} as Record<string, number>,
-  // );
-
-  // const pageviewsChartData = Object.entries(pageviewsByDay).map(
-  //   ([date, count]) => ({
-  //     date,
-  //     pageviews: count,
-  //   }),
-  // );
-
-  // // Prepare top pages data
-  // const pagesByViews = pageviews.reduce(
-  //   (acc, pv) => {
-  //     acc[pv.path] = (acc[pv.path] || 0) + 1;
-  //     return acc;
-  //   },
-  //   {} as Record<string, number>,
-  // );
-
-  // const topPages = Object.entries(pagesByViews)
-  //   .map(([page, count]) => ({ page, count }))
-  //   .sort((a, b) => b.count - a.count)
-  //   .slice(0, 5);
-
-  // // Prepare referrers data
-  // const referrersByCount = pageviews.reduce(
-  //   (acc, pv) => {
-  //     if (pv.referrer && pv.referrer.trim() !== "") {
-  //       // Extract domain from referrer URL
-  //       let referrer = pv.referrer;
-  //       try {
-  //         const url = new URL(pv.referrer);
-  //         referrer = url.hostname;
-  //       } catch (e) {
-  //         // If not a valid URL, use as is
-  //       }
-  //       acc[referrer] = (acc[referrer] || 0) + 1;
-  //     } else {
-  //       acc["Direct / None"] = (acc["Direct / None"] || 0) + 1;
-  //     }
-  //     return acc;
-  //   },
-  //   {} as Record<string, number>,
-  // );
-
-  // const topReferrers = Object.entries(referrersByCount)
-  //   .map(([referrer, count]) => ({ referrer, count }))
-  //   .sort((a, b) => b.count - a.count)
-  //   .slice(0, 5);
-
-  // // Prepare countries data
-  // const countriesByCount = pageviews.reduce(
-  //   (acc, pv) => {
-  //     if (pv.countryCode) {
-  //       acc[pv.countryCode] = (acc[pv.countryCode] || 0) + 1;
-  //     } else {
-  //       acc.Unknown = (acc.Unknown || 0) + 1;
-  //     }
-  //     return acc;
-  //   },
-  //   {} as Record<string, number>,
-  // );
-
-  // const topCountries = Object.entries(countriesByCount)
-  //   .map(([country, count]) => ({ country, count }))
-  //   .sort((a, b) => b.count - a.count)
-  //   .slice(0, 5);
-
-  // // Prepare screen sizes data
-  // const screenSizesByCount = pageviews.reduce(
-  //   (acc, pv) => {
-  //     const size = pv.screenSize || "Unknown";
-  //     acc[size] = (acc[size] || 0) + 1;
-  //     return acc;
-  //   },
-  //   {} as Record<string, number>,
-  // );
-
-  // const topScreenSizes = Object.entries(screenSizesByCount)
-  //   .map(([size, count]) => ({ size, count }))
-  //   .sort((a, b) => b.count - a.count)
-  //   .slice(0, 5);
-
   return (
     <div className="grid gap-x-4 gap-y-6 grid-cols-1 md:grid-cols-4">
       {/* Header */}
@@ -148,19 +40,25 @@ export default async function DomainPage({
         <StatsFeed websiteId={website.id} />
       </React.Suspense>
 
-      {/* Pages Tab */}
+      {/* Top Pages */}
       <React.Suspense fallback={<TopFeedSkeleton />}>
         <TopPagesFeed websiteId={website.id} />
       </React.Suspense>
 
-      {/* Referrers Tab */}
+      {/* Top Referrers */}
       <React.Suspense fallback={<TopFeedSkeleton />}>
         <TopReferrersFeed websiteId={website.id} />
       </React.Suspense>
 
-      {/* Countries Tab */}
+      {/* Top Countries */}
+      <React.Suspense fallback={<TopFeedSkeleton />}>
+        <TopCountriesFeed websiteId={website.id} />
+      </React.Suspense>
 
-      {/* Screen Sizes Tab */}
+      {/* Top Screen Sizes */}
+      <React.Suspense fallback={<TopFeedSkeleton />}>
+        <TopScreenSizesFeed websiteId={website.id} />
+      </React.Suspense>
 
       {/* Pageviews Over Time Chart */}
       {/* <Card>
@@ -191,135 +89,6 @@ export default async function DomainPage({
           </ChartContainer>
         </CardContent>
       </Card> */}
-
-      {/* Countries Tab */}
-      {/* <TabsContent value="countries" className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Top Countries</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {topCountries.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between"
-                    >
-                      <div>
-                        <span className="font-medium">{item.country}</span>
-                      </div>
-                      <div className="text-muted-foreground">
-                        {item.count} views
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Country Distribution</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ChartContainer className="h-[250px]" config={chartConfig}>
-                  <PieChart>
-                    <Pie
-                      data={topCountries}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={80}
-                      label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
-                    >
-                      {topCountries.map((_, index) => (
-                        <Cell
-                          key={`cell-${index}`}
-                          fill={CHART_COLORS[index % CHART_COLORS.length]}
-                        />
-                      ))}
-                    </Pie>
-                    <ChartTooltip
-                      content={
-                        <ChartTooltipContent nameKey="name" labelKey="value" />
-                      }
-                    />
-                    <ChartLegend
-                      content={<ChartLegendContent nameKey="name" />}
-                    />
-                  </PieChart>
-                </ChartContainer>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent> */}
-
-      {/* Screen Sizes Tab */}
-      {/* <TabsContent value="devices" className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Top Screen Sizes</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {topScreenSizes.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between"
-                    >
-                      <div>
-                        <span className="font-medium">{item.size}</span>
-                      </div>
-                      <div className="text-muted-foreground">
-                        {item.count} views
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Screen Size Distribution</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ChartContainer className="h-[250px]" config={chartConfig}>
-                  <PieChart>
-                    <Pie
-                      data={topScreenSizes}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={80}
-                      label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
-                    >
-                      {topScreenSizes.map((_, index) => (
-                        <Cell
-                          key={`cell-${index}`}
-                          fill={CHART_COLORS[index % CHART_COLORS.length]}
-                        />
-                      ))}
-                    </Pie>
-                    <ChartTooltip
-                      content={
-                        <ChartTooltipContent nameKey="name" labelKey="value" />
-                      }
-                    />
-                    <ChartLegend
-                      content={<ChartLegendContent nameKey="name" />}
-                    />
-                  </PieChart>
-                </ChartContainer>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
-      </Tabs> */}
     </div>
   );
 }
