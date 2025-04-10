@@ -4,20 +4,27 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import * as schema from "@/lib/db/schema";
 import { unstable_cache as cache } from "next/cache";
+import { headers } from "next/headers";
 
 const getCachedWebsites = cache(
-  async () => {
-    return await db.select().from(schema.websites);
+  async (userId: string) => {
+    return await db.query.websites.findMany({
+      where: (websites, { eq }) => eq(websites.userId, userId),
+      orderBy: (websites, { desc }) => [desc(websites.createdAt)],
+    });
   },
   ["websites"],
   { revalidate: 3600, tags: ["websites"] },
 );
 
 export const WebsiteFeed = async () => {
-  const websites = await getCachedWebsites();
+  const session = await auth.api.getSession({ headers: await headers() });
+  const websites = session?.user
+    ? await getCachedWebsites(session.user.id)
+    : [];
 
   if (!websites.length) return <div>No websites</div>;
 

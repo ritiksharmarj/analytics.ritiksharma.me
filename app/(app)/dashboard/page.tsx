@@ -21,11 +21,11 @@ import { WebsiteFeed } from "../_components/website-feed";
 import { WebsiteFeedSkeleton } from "../_components/website-feed-skeleton";
 
 export default async function DashboardPage() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  // const session = await auth.api.getSession({
+  //   headers: await headers(),
+  // });
 
-  if (!session) redirect(ROUTES.ROOT);
+  // if (!session) redirect(ROUTES.ROOT);
 
   return (
     <div>
