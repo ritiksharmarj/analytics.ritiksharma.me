@@ -6,8 +6,10 @@ import {
 } from "@/components/ui/card";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { ROUTES } from "@/lib/routes";
 import { unstable_cache as cache } from "next/cache";
 import { headers } from "next/headers";
+import Link from "next/link";
 
 const getCachedWebsites = cache(
   async (userId: string) => {
@@ -31,12 +33,14 @@ export const WebsiteFeed = async () => {
   return (
     <>
       {websites.map((site) => (
-        <Card key={site.id} className="hover:border-ring transition-colors">
-          <CardHeader>
-            <CardTitle>{site.name}</CardTitle>
-            <CardDescription>{site.domain}</CardDescription>
-          </CardHeader>
-        </Card>
+        <Link key={site.id} href={`${ROUTES.DASHBOARD}/${site.domain}`}>
+          <Card className="hover:border-ring transition-colors">
+            <CardHeader>
+              <CardTitle>{site.name}</CardTitle>
+              <CardDescription>{site.domain}</CardDescription>
+            </CardHeader>
+          </Card>
+        </Link>
       ))}
     </>
   );

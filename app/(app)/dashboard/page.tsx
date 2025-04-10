@@ -11,22 +11,12 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { auth } from "@/lib/auth";
-import { ROUTES } from "@/lib/routes";
 import { PlusIcon } from "lucide-react";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 import * as React from "react";
 import { WebsiteFeed } from "../_components/website-feed";
 import { WebsiteFeedSkeleton } from "../_components/website-feed-skeleton";
 
 export default async function DashboardPage() {
-  // const session = await auth.api.getSession({
-  //   headers: await headers(),
-  // });
-
-  // if (!session) redirect(ROUTES.ROOT);
-
   return (
     <div>
       {/* top */}
