@@ -1,5 +1,6 @@
 import { StatsFeed } from "@/components/app/domain/stats-feed";
-import { StatsFeedSkeleton } from "@/components/skeleton";
+import { TopPagesFeed } from "@/components/app/domain/top-pages-feed";
+import { StatsFeedSkeleton, TopPagesFeedSkeleton } from "@/components/skeleton";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import * as React from "react";
@@ -181,9 +182,9 @@ export default async function DomainPage({
   //   .slice(0, 5);
 
   return (
-    <div className="space-y-6">
+    <div className="grid gap-x-4 gap-y-6 grid-cols-1 md:grid-cols-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 col-span-full">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">{website.name}</h1>
           <p className="text-muted-foreground">{domain}</p>
@@ -194,11 +195,14 @@ export default async function DomainPage({
       </div>
 
       {/* Stats Cards */}
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-4">
-        <React.Suspense fallback={<StatsFeedSkeleton />}>
-          <StatsFeed websiteId={website.id} />
-        </React.Suspense>
-      </div>
+      <React.Suspense fallback={<StatsFeedSkeleton />}>
+        <StatsFeed websiteId={website.id} />
+      </React.Suspense>
+
+      {/* Pages Tab */}
+      <React.Suspense fallback={<TopPagesFeedSkeleton />}>
+        <TopPagesFeed websiteId={website.id} />
+      </React.Suspense>
 
       {/* Pageviews Over Time Chart */}
       {/* <Card>

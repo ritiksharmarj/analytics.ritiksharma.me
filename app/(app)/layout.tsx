@@ -9,7 +9,7 @@ export default function DashboardLayout({
     <div className="mx-auto w-full max-w-5xl px-4">
       <AppHeader />
 
-      <div className="mt-16">{children}</div>
+      <div className="my-16">{children}</div>
     </div>
   );
 }
