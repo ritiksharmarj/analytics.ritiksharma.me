@@ -1,5 +1,4 @@
 import { AppHeader } from "@/components/app-header";
-import * as React from "react";
 
 export default function DashboardLayout({
   children,

@@ -1,6 +1,6 @@
-import { type db } from "@/lib/db";
-import websitesJson from "./data/websites.json";
+import type { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
+import websitesJson from "./data/websites.json";
 
 export default async function seed(db: db) {
   const user = await db.query.user.findFirst();

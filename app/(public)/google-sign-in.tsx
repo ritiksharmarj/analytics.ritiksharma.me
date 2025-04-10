@@ -1,12 +1,12 @@
 "use client";
 
-import * as React from "react";
 import { GoogleIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { signIn } from "@/lib/auth/client";
-import { Loader2Icon } from "lucide-react";
-import { toast } from "sonner";
 import { ROUTES } from "@/lib/routes";
+import { Loader2Icon } from "lucide-react";
+import * as React from "react";
+import { toast } from "sonner";
 
 export const GoogleSignIn = () => {
   const [isPending, setIsPending] = React.useState(false);

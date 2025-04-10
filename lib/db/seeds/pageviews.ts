@@ -1,4 +1,4 @@
-import { type db } from "@/lib/db";
+import type { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
 import pageviewsJson from "./data/pageviews.json";
 

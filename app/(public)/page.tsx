@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
-import { GoogleSignIn } from "./google-sign-in";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { GoogleSignIn } from "./google-sign-in";
 
 export default async function Home() {
   const session = await auth.api.getSession({

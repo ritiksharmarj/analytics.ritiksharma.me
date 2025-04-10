@@ -1,6 +1,6 @@
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import user from "./user";
 import { nanoid } from "nanoid";
+import user from "./user";
 
 const websites = pgTable("websites", {
   id: text("id")

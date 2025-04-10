@@ -1,6 +1,9 @@
 "use client";
 
+import { signOut, useSession } from "@/lib/auth/client";
+import { ROUTES } from "@/lib/routes";
 import { BookOpenIcon, CircleHelpIcon, LogOutIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import {
@@ -12,9 +15,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { signOut, useSession } from "@/lib/auth/client";
-import { useRouter } from "next/navigation";
-import { ROUTES } from "@/lib/routes";
 
 export const AppHeader = () => {
   const router = useRouter();

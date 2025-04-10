@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { pageviews } from "@/lib/db/schema";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();

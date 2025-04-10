@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
-import { getTableName, sql, type Table } from "drizzle-orm";
+import { type Table, getTableName, sql } from "drizzle-orm";
 import * as seeds from "./seeds";
 
 async function resetTable(db: db, table: Table) {
