@@ -1,61 +1,10 @@
 import { StatsFeed } from "@/components/app/domain/stats-feed";
 import { TopPagesFeed } from "@/components/app/domain/top-pages-feed";
-import { StatsFeedSkeleton, TopPagesFeedSkeleton } from "@/components/skeleton";
+import { TopReferrersFeed } from "@/components/app/domain/top-referrers-feed";
+import { StatsFeedSkeleton, TopFeedSkeleton } from "@/components/skeleton";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import * as React from "react";
-
-// Define chart colors configuration
-// const chartConfig = {
-// pageviews: {
-// label: "Pageviews",
-//     theme: {
-//       light: "hsl(var(--primary))",
-//       dark: "hsl(var(--primary))",
-//     },
-//   },
-//   pages: {
-//     label: "Pages",
-//     theme: {
-//       light: "hsl(var(--primary))",
-//       dark: "hsl(var(--primary))",
-//     },
-//   },
-//   referrers: {
-//     label: "Referrers",
-//     theme: {
-//       light: "hsl(var(--primary))",
-//       dark: "hsl(var(--primary))",
-//     },
-//   },
-//   countries: {
-//     label: "Countries",
-//     theme: {
-//       light: "hsl(var(--primary))",
-//       dark: "hsl(var(--primary))",
-//     },
-//   },
-//   screenSizes: {
-//     label: "Screen Sizes",
-//     theme: {
-//       light: "hsl(var(--primary))",
-//       dark: "hsl(var(--primary))",
-//     },
-//   },
-// };
-
-// Define pie chart colors
-// const CHART_COLORS = [
-//   "hsl(215, 80%, 56%)", // Blue
-//   "hsl(142, 71%, 45%)", // Green
-//   "hsl(47, 100%, 68%)", // Yellow
-//   "hsl(0, 84%, 60%)", // Red
-//   "hsl(271, 70%, 60%)", // Purple
-//   "hsl(190, 90%, 50%)", // Cyan
-//   "hsl(169, 70%, 45%)", // Teal
-//   "hsl(318, 70%, 55%)", // Pink
-//   "hsl(41, 100%, 60%)", // Orange
-// ];
 
 export default async function DomainPage({
   params,
@@ -200,9 +149,18 @@ export default async function DomainPage({
       </React.Suspense>
 
       {/* Pages Tab */}
-      <React.Suspense fallback={<TopPagesFeedSkeleton />}>
+      <React.Suspense fallback={<TopFeedSkeleton />}>
         <TopPagesFeed websiteId={website.id} />
       </React.Suspense>
+
+      {/* Referrers Tab */}
+      <React.Suspense fallback={<TopFeedSkeleton />}>
+        <TopReferrersFeed websiteId={website.id} />
+      </React.Suspense>
+
+      {/* Countries Tab */}
+
+      {/* Screen Sizes Tab */}
 
       {/* Pageviews Over Time Chart */}
       {/* <Card>
@@ -233,143 +191,6 @@ export default async function DomainPage({
           </ChartContainer>
         </CardContent>
       </Card> */}
-
-      {/* Tabs for detailed analytics */}
-      {/* <Tabs defaultValue="pages" className="space-y-4">
-        <TabsList>
-          <TabsTrigger value="pages">Pages</TabsTrigger>
-          <TabsTrigger value="referrers">Referrers</TabsTrigger>
-          <TabsTrigger value="countries">Countries</TabsTrigger>
-          <TabsTrigger value="devices">Screen Sizes</TabsTrigger>
-        </TabsList> */}
-
-      {/* Pages Tab */}
-      {/* <TabsContent value="pages" className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Top Pages</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {topPages.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between"
-                    >
-                      <div className="truncate max-w-[250px]">
-                        <span className="font-medium">{item.page}</span>
-                      </div>
-                      <div className="text-muted-foreground">
-                        {item.count} views
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Pages Distribution</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ChartContainer className="h-[250px]" config={chartConfig}>
-                  <PieChart>
-                    <Pie
-                      data={topPages}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={80}
-                      label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
-                    >
-                      {topPages.map((_, index) => (
-                        <Cell
-                          key={`cell-${index}`}
-                          fill={CHART_COLORS[index % CHART_COLORS.length]}
-                        />
-                      ))}
-                    </Pie>
-                    <ChartTooltip
-                      content={
-                        <ChartTooltipContent nameKey="name" labelKey="value" />
-                      }
-                    />
-                    <ChartLegend
-                      content={<ChartLegendContent nameKey="name" />}
-                    />
-                  </PieChart>
-                </ChartContainer>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent> */}
-
-      {/* Referrers Tab */}
-      {/* <TabsContent value="referrers" className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Top Referrers</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {topReferrers.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between"
-                    >
-                      <div className="truncate max-w-[250px]">
-                        <span className="font-medium">{item.referrer}</span>
-                      </div>
-                      <div className="text-muted-foreground">
-                        {item.count} referrals
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Referrer Distribution</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ChartContainer className="h-[250px]" config={chartConfig}>
-                  <PieChart>
-                    <Pie
-                      data={topReferrers}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={80}
-                      label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
-                    >
-                      {topReferrers.map((_, index) => (
-                        <Cell
-                          key={`cell-${index}`}
-                          fill={CHART_COLORS[index % CHART_COLORS.length]}
-                        />
-                      ))}
-                    </Pie>
-                    <ChartTooltip
-                      content={
-                        <ChartTooltipContent nameKey="name" labelKey="value" />
-                      }
-                    />
-                    <ChartLegend
-                      content={<ChartLegendContent nameKey="name" />}
-                    />
-                  </PieChart>
-                </ChartContainer>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent> */}
 
       {/* Countries Tab */}
       {/* <TabsContent value="countries" className="space-y-4">

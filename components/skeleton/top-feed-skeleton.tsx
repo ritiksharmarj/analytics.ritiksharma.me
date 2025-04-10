@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const TopPagesFeedSkeleton = () => {
+const TopFeedSkeleton = () => {
   return (
     <>
       <Card className="col-span-full md:col-span-2">
@@ -27,4 +27,4 @@ const TopPagesFeedSkeleton = () => {
   );
 };
 
-export default TopPagesFeedSkeleton;
+export default TopFeedSkeleton;
