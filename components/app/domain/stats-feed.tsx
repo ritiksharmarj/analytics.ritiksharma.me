@@ -50,6 +50,7 @@ export const StatsFeed = async ({ websiteId }: { websiteId: string }) => {
           <div className="text-2xl font-bold">{totalPageviews}</div>
         </CardContent>
       </Card>
+
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Unique Pages</CardTitle>
@@ -59,6 +60,7 @@ export const StatsFeed = async ({ websiteId }: { websiteId: string }) => {
           <div className="text-2xl font-bold">{uniquePaths}</div>
         </CardContent>
       </Card>
+
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Referring Sites</CardTitle>
@@ -68,6 +70,7 @@ export const StatsFeed = async ({ websiteId }: { websiteId: string }) => {
           <div className="text-2xl font-bold">{uniqueReferrers}</div>
         </CardContent>
       </Card>
+
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Countries</CardTitle>

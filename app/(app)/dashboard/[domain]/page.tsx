@@ -1,4 +1,5 @@
 import { StatsFeed } from "@/components/app/domain/stats-feed";
+import { StatsFeedSkeleton } from "@/components/skeleton";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import * as React from "react";
@@ -188,14 +189,13 @@ export default async function DomainPage({
           <p className="text-muted-foreground">{domain}</p>
         </div>
         <div className="flex items-center gap-2">
-          {/* Add date range selector here if needed */}
-          <div className="text-sm text-muted-foreground">Last 30 days</div>
+          <div className="text-sm text-muted-foreground">Last 7 days</div>
         </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <React.Suspense fallback={<div>Loading...</div>}>
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-4">
+        <React.Suspense fallback={<StatsFeedSkeleton />}>
           <StatsFeed websiteId={website.id} />
         </React.Suspense>
       </div>
