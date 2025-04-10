@@ -1,7 +1,7 @@
 import { Card, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export const WebsiteFeedSkeleton = () => {
+const WebsiteFeedSkeleton = () => {
   return (
     <>
       {Array.from({ length: 6 }).map((_, i) => (
@@ -16,3 +16,5 @@ export const WebsiteFeedSkeleton = () => {
     </>
   );
 };
+
+export default WebsiteFeedSkeleton;

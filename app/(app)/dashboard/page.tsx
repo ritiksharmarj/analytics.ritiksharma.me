@@ -1,3 +1,5 @@
+import { WebsiteFeed } from "@/components/app/dashboard/website-feed";
+import { WebsiteFeedSkeleton } from "@/components/skeleton";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -13,8 +15,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PlusIcon } from "lucide-react";
 import * as React from "react";
-import { WebsiteFeed } from "../_components/website-feed";
-import { WebsiteFeedSkeleton } from "../_components/website-feed-skeleton";
 
 export default async function DashboardPage() {
   return (
