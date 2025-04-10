@@ -6,9 +6,18 @@ import {
 } from "@/components/ui/card";
 import { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
+import { unstable_cache as cache } from "next/cache";
+
+const getCachedWebsites = cache(
+  async () => {
+    return await db.select().from(schema.websites);
+  },
+  ["websites"],
+  { revalidate: 3600, tags: ["websites"] },
+);
 
 export const WebsiteFeed = async () => {
-  const websites = await db.select().from(schema.websites);
+  const websites = await getCachedWebsites();
 
   if (!websites.length) return <div>No websites</div>;
 

@@ -18,6 +18,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import * as React from "react";
 import { WebsiteFeed } from "../_components/website-feed";
+import { WebsiteFeedSkeleton } from "../_components/website-feed-skeleton";
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({
@@ -73,7 +74,7 @@ export default async function DashboardPage() {
 
       {/* list */}
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
-        <React.Suspense fallback={<p>Loading websites...</p>}>
+        <React.Suspense fallback={<WebsiteFeedSkeleton />}>
           <WebsiteFeed />
         </React.Suspense>
       </div>
