@@ -8,8 +8,6 @@ import {
   MousePointerIcon,
 } from "lucide-react";
 
-export const revalidate = 60; // Revalidate every minute
-
 export const StatsFeed = async ({ websiteId }: { websiteId: string }) => {
   const today = new Date();
   const sevenDaysAgo = subDays(today, 7);

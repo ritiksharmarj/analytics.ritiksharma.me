@@ -1,3 +1,4 @@
+import { PageviewsChart } from "@/components/app/domain/pageviews-chart";
 import { StatsFeed } from "@/components/app/domain/stats-feed";
 import { TopCountriesFeed } from "@/components/app/domain/top-countries-feed";
 import { TopPagesFeed } from "@/components/app/domain/top-pages-feed";
@@ -39,6 +40,9 @@ export default async function DomainPage({
       <React.Suspense fallback={<StatsFeedSkeleton />}>
         <StatsFeed websiteId={website.id} />
       </React.Suspense>
+
+      {/* Pageviews Over Time Chart */}
+      <PageviewsChart />
 
       {/* Top Pages */}
       <React.Suspense fallback={<TopFeedSkeleton />}>
