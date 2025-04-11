@@ -63,36 +63,6 @@ export default async function DomainPage({
       <React.Suspense fallback={<TopFeedSkeleton />}>
         <TopScreenSizesFeed websiteId={website.id} />
       </React.Suspense>
-
-      {/* Pageviews Over Time Chart */}
-      {/* <Card>
-        <CardHeader>
-          <CardTitle>Pageviews Over Time</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ChartContainer className="h-[300px]" config={chartConfig}>
-            <BarChart data={pageviewsChartData}>
-              <XAxis
-                dataKey="date"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={8}
-              />
-              <YAxis tickLine={false} axisLine={false} tickMargin={8} />
-              <ChartTooltip
-                content={
-                  <ChartTooltipContent labelKey="date" nameKey="pageviews" />
-                }
-              />
-              <Bar
-                dataKey="pageviews"
-                fill="var(--color-pageviews)"
-                radius={[4, 4, 0, 0]}
-              />
-            </BarChart>
-          </ChartContainer>
-        </CardContent>
-      </Card> */}
     </div>
   );
 }

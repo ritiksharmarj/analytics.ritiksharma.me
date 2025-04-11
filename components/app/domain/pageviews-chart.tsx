@@ -2,14 +2,14 @@
 
 import { Card } from "@/components/ui/card";
 import {
+  type ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-  type ChartConfig,
 } from "@/components/ui/chart";
-import { subDays, format } from "date-fns";
+import { format, subDays } from "date-fns";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 const generateDummyData = () => {
