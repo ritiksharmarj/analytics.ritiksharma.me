@@ -12,14 +12,7 @@
   const path = window.location.pathname;
   const referrer = window.document.referrer;
   const userAgent = window.navigator.userAgent;
-  const screenSize = calcScreensize();
-
-  // If actual screen size is 1366x768 returns "1400x800"
-  function calcScreensize() {
-    const w = window.screen.width;
-    const h = window.screen.height;
-    return `${Math.round(w / 100) * 100}x${Math.round(h / 100) * 100}`;
-  }
+  const screenSize = `${window.screen.width}x${window.screen.height}`;
 
   const payload = {
     host,
