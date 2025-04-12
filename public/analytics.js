@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 (function (window) {
   // Don't track in development
   if (
