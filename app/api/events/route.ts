@@ -17,7 +17,8 @@ export async function POST(req: NextRequest) {
   });
 
   if (!website) {
-    return NextResponse.json({ error: "Unregistered domain" }, { status: 400 });
+    // silently fail to not break client website
+    return NextResponse.json({ ok: true });
   }
 
   // get ip address
