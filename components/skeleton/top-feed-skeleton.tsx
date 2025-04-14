@@ -1,12 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const TopFeedSkeleton = () => {
+const TopFeedSkeleton = ({ title }: { title: string }) => {
   return (
     <>
       <Card className="col-span-full md:col-span-2">
         <CardHeader>
-          <CardTitle>Top Pages</CardTitle>
+          <CardTitle>{title}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">

@@ -45,22 +45,22 @@ export default async function DomainPage({
       <PageviewsChart />
 
       {/* Top Pages */}
-      <React.Suspense fallback={<TopFeedSkeleton />}>
+      <React.Suspense fallback={<TopFeedSkeleton title="Top Pages" />}>
         <TopPagesFeed websiteId={website.id} />
       </React.Suspense>
 
       {/* Top Referrers */}
-      <React.Suspense fallback={<TopFeedSkeleton />}>
+      <React.Suspense fallback={<TopFeedSkeleton title="Top Referrers" />}>
         <TopReferrersFeed websiteId={website.id} />
       </React.Suspense>
 
       {/* Top Countries */}
-      <React.Suspense fallback={<TopFeedSkeleton />}>
+      <React.Suspense fallback={<TopFeedSkeleton title="Top Countries" />}>
         <TopCountriesFeed websiteId={website.id} />
       </React.Suspense>
 
       {/* Top Screen Sizes */}
-      <React.Suspense fallback={<TopFeedSkeleton />}>
+      <React.Suspense fallback={<TopFeedSkeleton title="Top Screen Sizes" />}>
         <TopScreenSizesFeed websiteId={website.id} />
       </React.Suspense>
     </div>
