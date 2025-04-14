@@ -11,9 +11,7 @@
       "dist",
       "build",
       ".next",
-      ".vscode",
       "node_modules",
-      "public",
       "pnpm-lock.yaml",
       ".env*",
       "**/migrations"
