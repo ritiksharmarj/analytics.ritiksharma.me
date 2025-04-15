@@ -1,17 +1,22 @@
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import { nanoid } from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import websites from "./websites";
 
 const pageviews = pgTable("pageviews", {
   id: text("id")
     .primaryKey()
-    .$default(() => nanoid()),
+    .$default(() => uuidv4()),
   host: text("host").notNull(),
   path: text("path").notNull(),
   screenSize: text("screen_size"),
   countryCode: text("country_code"),
   userAgent: text("user_agent"),
   referrer: text("referrer"),
+  browser: text("browser"),
+  os: text("os"),
+  device: text("device"),
+  sessionId: text("session_id"),
+  visitId: text("visit_id"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   websiteId: text("website_id")
     .notNull()

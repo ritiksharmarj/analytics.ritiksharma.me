@@ -1,11 +1,11 @@
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import { nanoid } from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import user from "./user";
 
 const websites = pgTable("websites", {
   id: text("id")
     .primaryKey()
-    .$default(() => nanoid()),
+    .$default(() => uuidv4()),
   name: text("name").notNull(),
   domain: text("domain").notNull().unique(),
   createdAt: timestamp("created_at").notNull().defaultNow(),

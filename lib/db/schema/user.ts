@@ -1,10 +1,10 @@
 import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import { nanoid } from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 
 const user = pgTable("user", {
   id: text("id")
     .primaryKey()
-    .$default(() => nanoid()),
+    .$default(() => uuidv4()),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   emailVerified: boolean("email_verified").notNull(),

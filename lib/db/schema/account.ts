@@ -1,11 +1,11 @@
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import { nanoid } from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import user from "./user";
 
 const account = pgTable("account", {
   id: text("id")
     .primaryKey()
-    .$default(() => nanoid()),
+    .$default(() => uuidv4()),
   accountId: text("account_id").notNull(),
   providerId: text("provider_id").notNull(),
   accessToken: text("access_token"),
