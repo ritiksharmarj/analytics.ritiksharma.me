@@ -33,12 +33,20 @@ export async function POST(req: NextRequest) {
   // get device type
   const device = getDeviceType(screenSize, os);
 
+  // generate unique session and visit id
   const createdAt = new Date();
   const sessionSalt = hash(startOfMonth(createdAt).toUTCString());
   const visitSalt = hash(startOfHour(createdAt).toUTCString());
 
   const sessionId = uuid(website.id, ip, clientUserAgent, sessionSalt);
   const visitId = uuid(sessionId, visitSalt);
+
+  // get country code from vercel headers because we're hosted on vercel
+  const countryCode =
+    req.headers.get("x-vercel-ip-country") ||
+    req.headers.get("cf-ipcountry") ||
+    req.headers.get("x-country-code") ||
+    "unknown";
 
   await db.insert(pageviews).values({
     websiteId: website.id,
@@ -52,6 +60,7 @@ export async function POST(req: NextRequest) {
     browser,
     sessionId,
     visitId,
+    countryCode,
   });
 
   return NextResponse.json({ ok: true });
