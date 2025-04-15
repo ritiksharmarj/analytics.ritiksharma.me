@@ -22,11 +22,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
+  const clientUserAgent = userAgent || req.headers.get("user-agent");
+
   // get ip address
   const ip = getIpAddress(req.headers) || "";
 
   // get browser and os info
-  const { browser, os } = getBrowserInfo(userAgent);
+  const { browser, os } = getBrowserInfo(clientUserAgent);
 
   // get device type
   const device = getDeviceType(screenSize, os);
@@ -35,7 +37,7 @@ export async function POST(req: NextRequest) {
   const sessionSalt = hash(startOfMonth(createdAt).toUTCString());
   const visitSalt = hash(startOfHour(createdAt).toUTCString());
 
-  const sessionId = uuid(ip, userAgent, sessionSalt);
+  const sessionId = uuid(website.id, ip, clientUserAgent, sessionSalt);
   const visitId = uuid(sessionId, visitSalt);
 
   await db.insert(pageviews).values({
@@ -43,7 +45,7 @@ export async function POST(req: NextRequest) {
     host,
     path,
     referrer,
-    userAgent,
+    userAgent: clientUserAgent,
     screenSize,
     device,
     os,

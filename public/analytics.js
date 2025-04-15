@@ -1,4 +1,4 @@
-(function (window) {
+((window) => {
   // Don't track in development
   if (
     window.location.hostname === "localhost" ||
@@ -22,7 +22,7 @@
     screenSize,
   };
 
-  let endpoint = "https://analytics.ritiksharma.me/api/events";
+  const endpoint = "https://analytics.ritiksharma.me/api/events";
 
   if (navigator.sendBeacon) {
     navigator.sendBeacon(endpoint, JSON.stringify(payload));

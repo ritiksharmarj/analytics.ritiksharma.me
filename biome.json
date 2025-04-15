@@ -11,6 +11,7 @@
       "dist",
       "build",
       ".next",
+      ".vscode",
       "node_modules",
       "pnpm-lock.yaml",
       ".env*",
