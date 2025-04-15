@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { pageviews } from "@/lib/db/schema";
-import { normalizeDomain } from "@/lib/utils";
+import { hash, normalizeDomain, uuid } from "@/lib/utils";
+import { startOfHour, startOfMonth } from "date-fns";
 import { type NextRequest, NextResponse } from "next/server";
 import Sniffr from "sniffr";
 
@@ -22,13 +23,20 @@ export async function POST(req: NextRequest) {
   }
 
   // get ip address
-  const ip = getIpAddress(req.headers);
+  const ip = getIpAddress(req.headers) || "";
 
   // get browser and os info
   const { browser, os } = getBrowserInfo(userAgent);
 
   // get device type
   const device = getDeviceType(screenSize, os);
+
+  const createdAt = new Date();
+  const sessionSalt = hash(startOfMonth(createdAt).toUTCString());
+  const visitSalt = hash(startOfHour(createdAt).toUTCString());
+
+  const sessionId = uuid(ip, userAgent, sessionSalt);
+  const visitId = uuid(sessionId, visitSalt);
 
   await db.insert(pageviews).values({
     websiteId: website.id,
@@ -37,6 +45,11 @@ export async function POST(req: NextRequest) {
     referrer,
     userAgent,
     screenSize,
+    device,
+    os,
+    browser,
+    sessionId,
+    visitId,
   });
 
   return NextResponse.json({ ok: true });

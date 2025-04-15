@@ -1,5 +1,7 @@
+import crypto from "node:crypto";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { v4, v5 } from "uuid";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -16,4 +18,14 @@ export function normalizeDomain(domain: string) {
   normalized = normalized.split("/")[0];
 
   return normalized.toLowerCase();
+}
+
+export function hash(...args: string[]) {
+  return crypto.createHash("sha512").update(args.join("")).digest("hex");
+}
+
+export function uuid(...args: string[]) {
+  if (!args.length) return v4();
+
+  return v5(hash(...args), v5.DNS);
 }
