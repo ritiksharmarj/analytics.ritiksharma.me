@@ -12,3 +12,4 @@
 - [ ] fix script for SPA
 - [ ] update pageviews schema
 - [ ] update seed data
+- [ ] minify and compress script
