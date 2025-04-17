@@ -4,29 +4,26 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { ROUTES } from "@/lib/routes";
-import { unstable_cache as cache } from "next/cache";
-import { headers } from "next/headers";
+import { unstable_cache } from "next/cache";
 import Link from "next/link";
 
-const getCachedWebsites = cache(
-  async (userId: string) => {
-    return await db.query.websites.findMany({
-      where: (websites, { eq }) => eq(websites.userId, userId),
-      orderBy: (websites, { desc }) => [desc(websites.createdAt)],
-    });
-  },
-  ["websites"],
-  { revalidate: 3600, tags: ["websites"] },
-);
+const getCachedWebsites = async (userId: string) => {
+  return unstable_cache(
+    async () => {
+      return await db.query.websites.findMany({
+        where: (websites, { eq }) => eq(websites.userId, userId),
+        orderBy: (websites, { desc }) => [desc(websites.createdAt)],
+      });
+    },
+    ["websites", userId],
+    { revalidate: 3600, tags: [`websites_${userId}`] },
+  )();
+};
 
-export const WebsiteFeed = async () => {
-  const session = await auth.api.getSession({ headers: await headers() });
-  const websites = session?.user
-    ? await getCachedWebsites(session.user.id)
-    : [];
+export const WebsiteFeed = async ({ userId }: { userId: string }) => {
+  const websites = await getCachedWebsites(userId);
 
   if (!websites.length) return <div>No websites</div>;
 
