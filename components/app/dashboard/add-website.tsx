@@ -20,36 +20,42 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createWebsiteAction } from "@/lib/actions/create-website";
+import {
+  createWebsiteFormSchema,
+  type createWebsiteFormSchemaType,
+} from "@/lib/zod/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PlusIcon } from "lucide-react";
+import { LoaderCircleIcon, PlusIcon } from "lucide-react";
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name cannot be kept empty.",
-  }),
-  domain: z.string().min(2, {
-    message: "Domain cannot be kept empty.",
-  }),
-});
+import { toast } from "sonner";
 
 export const AddWebsite = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isPending, startTransition] = React.useTransition();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<createWebsiteFormSchemaType>({
+    resolver: zodResolver(createWebsiteFormSchema),
     defaultValues: {
       name: "",
       domain: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  function onSubmit(values: createWebsiteFormSchemaType) {
+    startTransition(async () => {
+      const res = await createWebsiteAction(values);
+
+      if (res?.error) {
+        toast.error(res.error);
+        form.setError("domain", { message: res.error }, { shouldFocus: true });
+        return;
+      }
+
+      setIsOpen(false);
+      toast.success("Website added successfully!");
+    });
   }
 
   return (
@@ -107,9 +113,14 @@ export const AddWebsite = () => {
 
             <DialogFooter className="pt-4">
               <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline" disabled={isPending}>
+                  Cancel
+                </Button>
               </DialogClose>
-              <Button type="submit">Save</Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending && <LoaderCircleIcon className="animate-spin" />}{" "}
+                Save
+              </Button>
             </DialogFooter>
           </form>
         </Form>
