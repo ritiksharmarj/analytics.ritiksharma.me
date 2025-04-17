@@ -18,7 +18,7 @@ export const TopScreenSizesFeed = async ({
 
   const screenSizesByCount = pageviews.reduce(
     (acc, pv) => {
-      const size = pv.screenSize || "Unknown";
+      const size = pv.device || "Unknown";
       acc[size] = (acc[size] || 0) + 1;
       return acc;
     },
