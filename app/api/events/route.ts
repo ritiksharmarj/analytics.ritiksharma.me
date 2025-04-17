@@ -54,7 +54,6 @@ export async function POST(req: NextRequest) {
     path,
     referrer,
     userAgent: clientUserAgent,
-    screenSize,
     device,
     os,
     browser,

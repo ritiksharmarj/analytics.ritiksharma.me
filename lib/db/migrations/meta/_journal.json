@@ -29,6 +29,13 @@
       "when": 1744692473721,
       "tag": "0003_nebulous_shinobi_shaw",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1744864705220,
+      "tag": "0004_outstanding_sinister_six",
+      "breakpoints": true
     }
   ]
 }

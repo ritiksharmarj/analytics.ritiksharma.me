@@ -8,7 +8,6 @@ const pageviews = pgTable("pageviews", {
     .$default(() => uuidv4()),
   host: text("host").notNull(),
   path: text("path").notNull(),
-  screenSize: text("screen_size"),
   countryCode: text("country_code"),
   userAgent: text("user_agent"),
   referrer: text("referrer"),

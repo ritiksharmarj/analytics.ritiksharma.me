@@ -1,0 +1,1 @@
+ALTER TABLE "pageviews" DROP COLUMN "screen_size";
