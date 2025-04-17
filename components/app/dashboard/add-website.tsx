@@ -20,22 +20,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PlusIcon } from "lucide-react";
+import * as React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
+    message: "Name cannot be kept empty.",
   }),
   domain: z.string().min(2, {
-    message: "Domain must be at least 2 characters.",
+    message: "Domain cannot be kept empty.",
   }),
 });
 
 export const AddWebsite = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,7 +53,14 @@ export const AddWebsite = () => {
   }
 
   return (
-    <Dialog>
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open) setTimeout(() => form.reset(), 150);
+
+        setIsOpen(open);
+      }}
+    >
       <DialogTrigger asChild>
         <Button>
           <PlusIcon /> Add website
