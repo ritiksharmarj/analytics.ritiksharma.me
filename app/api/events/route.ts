@@ -1,11 +1,10 @@
-import crypto from "node:crypto";
+import { hash, uuid } from "@/lib/crypto";
 import { db } from "@/lib/db";
 import { pageviews } from "@/lib/db/schema";
 import { normalizeDomain } from "@/lib/utils";
 import { startOfHour, startOfMonth } from "date-fns";
 import { type NextRequest, NextResponse } from "next/server";
 import Sniffr from "sniffr";
-import { v4, v5 } from "uuid";
 
 export async function POST(req: NextRequest) {
   const payload = await req.json();
@@ -157,14 +156,4 @@ function getDeviceType(screenSize: string, os: string) {
   if (Number(width) >= LAPTOP_SCREEN_WIDTH) return DEVICE_TYPE.LAPTOP;
   if (Number(width) >= MOBILE_SCREEN_WIDTH) return DEVICE_TYPE.TABLET;
   return DEVICE_TYPE.MOBILE;
-}
-
-export function hash(...args: string[]) {
-  return crypto.createHash("sha512").update(args.join("")).digest("hex");
-}
-
-export function uuid(...args: string[]) {
-  if (!args.length) return v4();
-
-  return v5(hash(...args), v5.DNS);
 }
