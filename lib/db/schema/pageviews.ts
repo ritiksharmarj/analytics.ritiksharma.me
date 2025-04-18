@@ -23,3 +23,5 @@ const pageviews = pgTable("pageviews", {
 });
 
 export default pageviews;
+
+export type Pageviews = typeof pageviews.$inferSelect;

@@ -1,11 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getPageviews } from "@/lib/services/cached-queries";
+import type { Pageviews } from "@/lib/db/schema";
 
-export const TopReferrersFeed = async ({
-  websiteId,
-}: { websiteId: string }) => {
-  const pageviews = await getPageviews({ websiteId });
-
+export const TopReferrersFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
   const referrersByCount = pageviews.reduce(
     (acc, pv) => {
       if (pv.referrer && pv.referrer.trim() !== "") {

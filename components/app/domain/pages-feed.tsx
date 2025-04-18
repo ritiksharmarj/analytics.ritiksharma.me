@@ -1,9 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getPageviews } from "@/lib/services/cached-queries";
+import type { Pageviews } from "@/lib/db/schema";
 
-export const TopPagesFeed = async ({ websiteId }: { websiteId: string }) => {
-  const pageviews = await getPageviews({ websiteId });
-
+export const TopPagesFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
   const pagesByViews = pageviews.reduce(
     (acc, pv) => {
       acc[pv.path] = (acc[pv.path] || 0) + 1;

@@ -1,14 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import countryNames from "@/lib/data/en-US.json";
-import { getPageviews } from "@/lib/services/cached-queries";
+import type { Pageviews } from "@/lib/db/schema";
 
 const countryCodeToName = countryNames as Record<string, string>;
 
-export const TopCountriesFeed = async ({
-  websiteId,
-}: { websiteId: string }) => {
-  const pageviews = await getPageviews({ websiteId });
-
+export const TopCountriesFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
   const countriesByCount = pageviews.reduce(
     (acc, pv) => {
       const code = pv.countryCode || "Unknown";

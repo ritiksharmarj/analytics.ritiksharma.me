@@ -1,9 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getPageviews } from "@/lib/services/cached-queries";
+import type { Pageviews } from "@/lib/db/schema";
 
-export const TopBrowsersFeed = async ({ websiteId }: { websiteId: string }) => {
-  const pageviews = await getPageviews({ websiteId });
-
+export const TopBrowsersFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
   const browsersByCount = pageviews.reduce(
     (acc, pv) => {
       const title = pv.browser || "Unknown";

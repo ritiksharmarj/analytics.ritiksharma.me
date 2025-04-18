@@ -1,10 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getPageviews } from "@/lib/services/cached-queries";
-import { EyeIcon, GlobeIcon, MonitorIcon, UsersIcon } from "lucide-react";
+import type { Pageviews } from "@/lib/db/schema";
+import {
+  ActivityIcon,
+  EyeIcon,
+  GlobeIcon,
+  MonitorIcon,
+  UsersIcon,
+} from "lucide-react";
 
-export const StatsFeed = async ({ websiteId }: { websiteId: string }) => {
-  const pageviews = await getPageviews({ websiteId });
-
+export const StatsFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
   const totalPageviews = pageviews.length;
   const uniqueVisitors = new Set(pageviews.map((pv) => pv.sessionId)).size;
   const totalVisits = new Set(pageviews.map((pv) => pv.visitId)).size;
@@ -17,7 +21,7 @@ export const StatsFeed = async ({ websiteId }: { websiteId: string }) => {
 
   const statsData = [
     { title: "Total Pageviews", value: totalPageviews, icon: EyeIcon },
-    { title: "Total Visits", value: totalVisits, icon: UsersIcon },
+    { title: "Total Visits", value: totalVisits, icon: ActivityIcon },
     { title: "Unique Visitors", value: uniqueVisitors, icon: UsersIcon },
     { title: "Referring Sites", value: uniqueReferrers, icon: GlobeIcon },
   ];
