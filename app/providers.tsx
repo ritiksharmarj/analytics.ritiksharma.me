@@ -7,7 +7,6 @@ import {
   isServer,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import * as React from "react";
 
 const makeQueryClient = () => {
   return new QueryClient({
@@ -33,8 +32,7 @@ const getQueryClient = () => {
 };
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-  // Ensures each request has its own cache:
-  const [queryClient] = React.useState(() => getQueryClient());
+  const queryClient = getQueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
