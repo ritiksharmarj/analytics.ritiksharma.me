@@ -7,6 +7,7 @@ export const StatsFeed = async ({ websiteId }: { websiteId: string }) => {
 
   const totalPageviews = pageviews.length;
   const uniqueVisitors = new Set(pageviews.map((pv) => pv.sessionId)).size;
+  const totalVisits = new Set(pageviews.map((pv) => pv.visitId)).size;
 
   const uniqueReferrers = new Set(
     pageviews
@@ -14,15 +15,11 @@ export const StatsFeed = async ({ websiteId }: { websiteId: string }) => {
       .filter((ref) => ref && ref.trim() !== ""),
   ).size;
 
-  const uniqueCountries = new Set(
-    pageviews.map((pv) => pv.countryCode).filter(Boolean),
-  ).size;
-
   const statsData = [
     { title: "Total Pageviews", value: totalPageviews, icon: EyeIcon },
+    { title: "Total Visits", value: totalVisits, icon: UsersIcon },
     { title: "Unique Visitors", value: uniqueVisitors, icon: UsersIcon },
     { title: "Referring Sites", value: uniqueReferrers, icon: GlobeIcon },
-    { title: "Countries", value: uniqueCountries, icon: MonitorIcon },
   ];
 
   return (
