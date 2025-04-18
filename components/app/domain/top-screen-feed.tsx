@@ -1,20 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/lib/db";
-import { subDays } from "date-fns";
+import { getPageviews } from "@/lib/services/cached-queries";
 
 export const TopScreenSizesFeed = async ({
   websiteId,
 }: { websiteId: string }) => {
-  const today = new Date();
-  const sevenDaysAgo = subDays(today, 7);
-
-  const pageviews = await db.query.pageviews.findMany({
-    where: (pageviews, { eq, and, gte }) =>
-      and(
-        eq(pageviews.websiteId, websiteId),
-        gte(pageviews.createdAt, sevenDaysAgo),
-      ),
-  });
+  const pageviews = await getPageviews({ websiteId });
 
   const screenSizesByCount = pageviews.reduce(
     (acc, pv) => {
@@ -34,19 +24,17 @@ export const TopScreenSizesFeed = async ({
     <>
       <Card className="col-span-full md:col-span-2">
         <CardHeader>
-          <CardTitle>Top Screen Sizes</CardTitle>
+          <CardTitle>Top Devices</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-4 text-sm">
             {topScreenSizes.map((item, idx) => (
               <div
                 key={item.size}
-                className="flex items-center justify-between"
+                className="flex items-center justify-between gap-4"
               >
-                <div>
-                  <span className="font-medium">{item.size}</span>
-                </div>
-                <div className="text-muted-foreground">{item.count} views</div>
+                <div className="capitalize">{item.size}</div>
+                <div className="font-medium">{item.count}</div>
               </div>
             ))}
           </div>

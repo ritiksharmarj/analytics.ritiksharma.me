@@ -60,7 +60,7 @@ export default async function DomainPage({
       </React.Suspense>
 
       {/* Top Screen Sizes */}
-      <React.Suspense fallback={<TopFeedSkeleton title="Top Screen Sizes" />}>
+      <React.Suspense fallback={<TopFeedSkeleton title="Top Devices" />}>
         <TopScreenSizesFeed websiteId={website.id} />
       </React.Suspense>
     </div>

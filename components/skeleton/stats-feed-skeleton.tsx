@@ -1,11 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  EyeIcon,
-  GlobeIcon,
-  MonitorIcon,
-  MousePointerIcon,
-} from "lucide-react";
+import { EyeIcon, GlobeIcon, MonitorIcon, UsersIcon } from "lucide-react";
 
 const StatsFeedSkeleton = () => {
   const skeletonItems = [
@@ -14,8 +9,8 @@ const StatsFeedSkeleton = () => {
       icon: EyeIcon,
     },
     {
-      title: "Unique Pages",
-      icon: MousePointerIcon,
+      title: "Unique Visitors",
+      icon: UsersIcon,
     },
     {
       title: "Referring Sites",

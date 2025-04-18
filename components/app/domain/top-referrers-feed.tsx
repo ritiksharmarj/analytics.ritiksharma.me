@@ -1,20 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/lib/db";
-import { subDays } from "date-fns";
+import { getPageviews } from "@/lib/services/cached-queries";
 
 export const TopReferrersFeed = async ({
   websiteId,
 }: { websiteId: string }) => {
-  const today = new Date();
-  const sevenDaysAgo = subDays(today, 7);
-
-  const pageviews = await db.query.pageviews.findMany({
-    where: (pageviews, { eq, and, gte }) =>
-      and(
-        eq(pageviews.websiteId, websiteId),
-        gte(pageviews.createdAt, sevenDaysAgo),
-      ),
-  });
+  const pageviews = await getPageviews({ websiteId });
 
   const referrersByCount = pageviews.reduce(
     (acc, pv) => {
@@ -48,18 +38,14 @@ export const TopReferrersFeed = async ({
           <CardTitle>Top Referrers</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-4 text-sm">
             {topReferrers.map((item) => (
               <div
                 key={item.referrer}
-                className="flex items-center justify-between"
+                className="flex items-center justify-between gap-4"
               >
-                <div className="truncate max-w-[250px]">
-                  <span className="font-medium">{item.referrer}</span>
-                </div>
-                <div className="text-muted-foreground">
-                  {item.count} referrals
-                </div>
+                <div className="truncate">{item.referrer}</div>
+                <div className="font-medium">{item.count}</div>
               </div>
             ))}
           </div>
