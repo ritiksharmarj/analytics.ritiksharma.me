@@ -30,7 +30,11 @@ export const WebsiteFeed = async ({ userId }: { userId: string }) => {
   return (
     <>
       {websites.map((site) => (
-        <Link key={site.id} href={`${ROUTES.DASHBOARD}/${site.domain}`}>
+        <Link
+          key={site.id}
+          href={`${ROUTES.DASHBOARD}/${site.domain}`}
+          prefetch={true}
+        >
           <Card className="hover:border-ring transition-colors">
             <CardHeader>
               <CardTitle>{site.name}</CardTitle>
