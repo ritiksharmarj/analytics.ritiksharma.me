@@ -1,5 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import countryNames from "@/lib/data/en-US.json";
 import { getPageviews } from "@/lib/services/cached-queries";
+
+const countryCodeToName = countryNames as Record<string, string>;
 
 export const TopCountriesFeed = async ({
   websiteId,
@@ -8,18 +11,19 @@ export const TopCountriesFeed = async ({
 
   const countriesByCount = pageviews.reduce(
     (acc, pv) => {
-      if (pv.countryCode) {
-        acc[pv.countryCode] = (acc[pv.countryCode] || 0) + 1;
-      } else {
-        acc.Unknown = (acc.Unknown || 0) + 1;
-      }
+      const code = pv.countryCode || "Unknown";
+      acc[code] = (acc[code] || 0) + 1;
       return acc;
     },
     {} as Record<string, number>,
   );
 
   const topCountries = Object.entries(countriesByCount)
-    .map(([country, count]) => ({ country, count }))
+    .map(([code, count]) => ({
+      code,
+      name: countryCodeToName[code] || code,
+      count,
+    }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 8);
 
@@ -31,12 +35,12 @@ export const TopCountriesFeed = async ({
         </CardHeader>
         <CardContent>
           <div className="space-y-4 text-sm">
-            {topCountries.map((item, idx) => (
+            {topCountries.map((item) => (
               <div
-                key={item.country}
+                key={item.code}
                 className="flex items-center justify-between gap-4"
               >
-                <div>{item.country}</div>
+                <div>{item.name}</div>
                 <div className="font-medium">{item.count}</div>
               </div>
             ))}
