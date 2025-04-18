@@ -10,9 +10,27 @@ import { StatsFeed } from "@/components/app/domain/stats-feed";
 import { VisitorsViewsChart } from "@/components/app/domain/visitors-views-chart";
 import { StatsFeedSkeleton, TopFeedSkeleton } from "@/components/skeleton";
 import { useGetAnalyticsPageviews } from "@/hooks/use-analytics";
+import { parseAsString, useQueryStates } from "nuqs";
 
-export const AnalyticsFeed = ({ websiteId }: { websiteId: string }) => {
-  const { pageviews, isLoading } = useGetAnalyticsPageviews({ websiteId });
+type Props = {
+  defaultValue: {
+    from: string;
+    to: string;
+    period: string;
+  };
+  websiteId: string;
+};
+
+export const AnalyticsFeed = ({ websiteId, defaultValue }: Props) => {
+  const [params] = useQueryStates({
+    from: parseAsString.withDefault(defaultValue.from),
+    to: parseAsString.withDefault(defaultValue.to),
+  });
+  const { pageviews, isLoading } = useGetAnalyticsPageviews({
+    websiteId,
+    from: params.from,
+    to: params.to,
+  });
 
   if (isLoading)
     return (

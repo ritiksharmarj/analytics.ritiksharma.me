@@ -8,15 +8,21 @@ export const analyticsQueryKeys = {
 
 export const useGetAnalyticsPageviews = ({
   websiteId,
-}: { websiteId: string }) => {
+  from,
+  to,
+}: { websiteId: string; from: string; to: string }) => {
   const getAnalyticsPageviews = () => {
     return getRequest({
       url: `/api/analytics/${websiteId}`,
+      params: {
+        from,
+        to,
+      },
     });
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: [analyticsQueryKeys.analyticsPageviews, websiteId],
+    queryKey: [analyticsQueryKeys.analyticsPageviews, websiteId, from, to],
     queryFn: getAnalyticsPageviews,
     enabled: !!websiteId,
   });

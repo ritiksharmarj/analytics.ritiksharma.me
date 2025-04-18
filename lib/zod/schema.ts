@@ -8,3 +8,8 @@ export const createWebsiteFormSchema = z.object({
 export type createWebsiteFormSchemaType = z.infer<
   typeof createWebsiteFormSchema
 >;
+
+export const analyticsPeriodSchema = z.object({
+  from: z.string(),
+  to: z.string(),
+});
