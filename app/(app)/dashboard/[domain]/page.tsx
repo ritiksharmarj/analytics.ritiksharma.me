@@ -1,9 +1,11 @@
-import { PageviewsChart } from "@/components/app/domain/pageviews-chart";
+import { TopBrowsersFeed } from "@/components/app/domain/browsers-feed";
+import { TopDevicesFeed } from "@/components/app/domain/devices-feed";
+import { TopOSFeed } from "@/components/app/domain/os-feed";
 import { StatsFeed } from "@/components/app/domain/stats-feed";
-import { TopCountriesFeed } from "@/components/app/domain/top-countries-feed";
-import { TopPagesFeed } from "@/components/app/domain/top-pages-feed";
-import { TopReferrersFeed } from "@/components/app/domain/top-referrers-feed";
-import { TopScreenSizesFeed } from "@/components/app/domain/top-screen-feed";
+import { TopCountriesFeed } from "@/components/app/domain/countries-feed";
+import { TopPagesFeed } from "@/components/app/domain/pages-feed";
+import { TopReferrersFeed } from "@/components/app/domain/referrers-feed";
+import { VisitorsViewsChart } from "@/components/app/domain/visitors-views-chart";
 import { StatsFeedSkeleton, TopFeedSkeleton } from "@/components/skeleton";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
@@ -42,7 +44,7 @@ export default async function DomainPage({
       </React.Suspense>
 
       {/* Pageviews Over Time Chart */}
-      <PageviewsChart />
+      <VisitorsViewsChart />
 
       {/* Top Pages */}
       <React.Suspense fallback={<TopFeedSkeleton title="Top Pages" />}>
@@ -59,9 +61,19 @@ export default async function DomainPage({
         <TopCountriesFeed websiteId={website.id} />
       </React.Suspense>
 
-      {/* Top Screen Sizes */}
-      <React.Suspense fallback={<TopFeedSkeleton title="Top Devices" />}>
-        <TopScreenSizesFeed websiteId={website.id} />
+      {/* Top Browsers */}
+      <React.Suspense fallback={<TopFeedSkeleton title="Browsers" />}>
+        <TopBrowsersFeed websiteId={website.id} />
+      </React.Suspense>
+
+      {/* Top Devices */}
+      <React.Suspense fallback={<TopFeedSkeleton title="Devices" />}>
+        <TopDevicesFeed websiteId={website.id} />
+      </React.Suspense>
+
+      {/* Top OS */}
+      <React.Suspense fallback={<TopFeedSkeleton title="OS" />}>
+        <TopOSFeed websiteId={website.id} />
       </React.Suspense>
     </div>
   );

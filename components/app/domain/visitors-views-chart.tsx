@@ -49,7 +49,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export const PageviewsChart = () => {
+export const VisitorsViewsChart = () => {
   return (
     <Card className="col-span-full max-h-[460px]">
       <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
