@@ -5,64 +5,39 @@ import { EyeIcon, GlobeIcon, MonitorIcon, UsersIcon } from "lucide-react";
 export const StatsFeed = async ({ websiteId }: { websiteId: string }) => {
   const pageviews = await getPageviews({ websiteId });
 
-  // Calculate total pageviews
   const totalPageviews = pageviews.length;
-
   const uniqueVisitors = new Set(pageviews.map((pv) => pv.sessionId)).size;
 
-  // Calculate unique referrers (excluding empty ones)
   const uniqueReferrers = new Set(
     pageviews
       .map((pv) => pv.referrer)
       .filter((ref) => ref && ref.trim() !== ""),
   ).size;
 
-  // Calculate unique countries
   const uniqueCountries = new Set(
     pageviews.map((pv) => pv.countryCode).filter(Boolean),
   ).size;
 
+  const statsData = [
+    { title: "Total Pageviews", value: totalPageviews, icon: EyeIcon },
+    { title: "Unique Visitors", value: uniqueVisitors, icon: UsersIcon },
+    { title: "Referring Sites", value: uniqueReferrers, icon: GlobeIcon },
+    { title: "Countries", value: uniqueCountries, icon: MonitorIcon },
+  ];
+
   return (
     <>
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Total Pageviews</CardTitle>
-          <EyeIcon className="size-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">{totalPageviews}</div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Unique Visitors</CardTitle>
-          <UsersIcon className="size-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">{uniqueVisitors}</div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Referring Sites</CardTitle>
-          <GlobeIcon className="size-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">{uniqueReferrers}</div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Countries</CardTitle>
-          <MonitorIcon className="size-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">{uniqueCountries}</div>
-        </CardContent>
-      </Card>
+      {statsData.map((data) => (
+        <Card key={data.title}>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">{data.title}</CardTitle>
+            <data.icon className="size-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{data.value}</div>
+          </CardContent>
+        </Card>
+      ))}
     </>
   );
 };
