@@ -1,14 +1,14 @@
 import { AnalyticsPeriod } from "@/components/app/domain/analytics-period";
 import { db } from "@/lib/db";
-import { startOfWeek } from "date-fns";
+import { startOfDay, subDays } from "date-fns";
 import { notFound } from "next/navigation";
 import * as React from "react";
 import { AnalyticsFeed } from "./analytics-feed";
 
 const defaultValue = {
-  from: startOfWeek(new Date()).toISOString(),
+  from: startOfDay(subDays(new Date(), 7)).toISOString(),
   to: new Date().toISOString(),
-  period: "this_week",
+  period: "7d",
 };
 
 export default async function DomainPage({

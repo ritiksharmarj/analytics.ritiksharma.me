@@ -8,18 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  endOfDay,
-  endOfMonth,
-  endOfWeek,
-  formatISO,
-  startOfDay,
-  startOfMonth,
-  startOfWeek,
-  subDays,
-  subMonths,
-  subWeeks,
-} from "date-fns";
+import { formatISO, startOfDay, subDays, subHours, subMonths } from "date-fns";
 import { parseAsString, useQueryStates } from "nuqs";
 
 type Props = {
@@ -40,50 +29,26 @@ const periods = [
     },
   },
   {
-    value: "yesterday",
-    label: "Yesterday",
+    value: "24h",
+    label: "Last 24 hours",
     range: {
-      from: startOfDay(subDays(new Date(), 1)),
-      to: endOfDay(subDays(new Date(), 1)),
-    },
-  },
-  {
-    value: "this_week",
-    label: "This week",
-    range: {
-      from: startOfWeek(new Date()),
+      from: subHours(new Date(), 24),
       to: new Date(),
     },
   },
   {
-    value: "last_week",
-    label: "Last week",
+    value: "7d",
+    label: "Last 7 days",
     range: {
-      from: startOfWeek(subWeeks(new Date(), 1)),
-      to: endOfWeek(subWeeks(new Date(), 1)),
-    },
-  },
-  {
-    value: "this_month",
-    label: "This month",
-    range: {
-      from: startOfMonth(new Date()),
+      from: startOfDay(subDays(new Date(), 7)),
       to: new Date(),
     },
   },
   {
-    value: "last_month",
-    label: "Last month",
+    value: "30d",
+    label: "Last 30 days",
     range: {
-      from: startOfMonth(subMonths(new Date(), 1)),
-      to: endOfMonth(subMonths(new Date(), 1)),
-    },
-  },
-  {
-    value: "3m",
-    label: "Last 3 months",
-    range: {
-      from: startOfDay(subMonths(new Date(), 3)),
+      from: startOfDay(subDays(new Date(), 30)),
       to: new Date(),
     },
   },
@@ -96,10 +61,10 @@ const periods = [
     },
   },
   {
-    value: "all",
-    label: "All time",
+    value: "12m",
+    label: "Last 12 months",
     range: {
-      from: new Date("2020-01-01"),
+      from: startOfDay(subMonths(new Date(), 12)),
       to: new Date(),
     },
   },
