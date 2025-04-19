@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const analyticsQueryKeys = {
   analyticsPageviews: "analyticsPageviews",
+  analyticsLiveUsersCount: "analyticsLiveUsersCount",
 };
 
 export const useGetAnalyticsPageviews = ({
@@ -30,4 +31,25 @@ export const useGetAnalyticsPageviews = ({
   const pageviews = data as Pageviews[] | undefined;
 
   return { pageviews, isLoading };
+};
+
+export const useGetAnalyticsLiveUsersCount = ({
+  websiteId,
+}: { websiteId: string }) => {
+  const getAnalyticsLiveUsersCount = () => {
+    return getRequest({
+      url: `/api/analytics/${websiteId}/live`,
+    });
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: [analyticsQueryKeys.analyticsLiveUsersCount, websiteId],
+    queryFn: getAnalyticsLiveUsersCount,
+    enabled: !!websiteId,
+    refetchInterval: 30 * 1000,
+  });
+
+  const liveUsersCount = data as number | undefined;
+
+  return { liveUsersCount, isLoading };
 };
