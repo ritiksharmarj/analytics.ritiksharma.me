@@ -22,6 +22,8 @@
   --color-border: oklch(0.92 0.004 286.32);
   --color-input: oklch(0.92 0.004 286.32);
   --color-ring: oklch(0.705 0.015 286.067);
+  --color-chart-1: oklch(0.55 0.215 262.75);
+  --color-chart-2: oklch(0.72 0.141 253.28);
 
   --radius: 0.625rem;
   --radius-sm: calc(var(--radius) - 4px);

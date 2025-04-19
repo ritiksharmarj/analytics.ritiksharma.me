@@ -40,7 +40,7 @@ const periods = [
     value: "7d",
     label: "Last 7 days",
     range: {
-      from: startOfDay(subDays(new Date(), 7)),
+      from: startOfDay(subDays(new Date(), 6)),
       to: new Date(),
     },
   },
@@ -48,7 +48,7 @@ const periods = [
     value: "30d",
     label: "Last 30 days",
     range: {
-      from: startOfDay(subDays(new Date(), 30)),
+      from: startOfDay(subDays(new Date(), 29)),
       to: new Date(),
     },
   },
@@ -56,7 +56,7 @@ const periods = [
     value: "6m",
     label: "Last 6 months",
     range: {
-      from: startOfDay(subMonths(new Date(), 6)),
+      from: startOfDay(subMonths(new Date(), 5)),
       to: new Date(),
     },
   },
@@ -64,7 +64,7 @@ const periods = [
     value: "12m",
     label: "Last 12 months",
     range: {
-      from: startOfDay(subMonths(new Date(), 12)),
+      from: startOfDay(subMonths(new Date(), 11)),
       to: new Date(),
     },
   },

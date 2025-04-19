@@ -25,6 +25,7 @@ export const AnalyticsFeed = ({ websiteId, defaultValue }: Props) => {
   const [params] = useQueryStates({
     from: parseAsString.withDefault(defaultValue.from),
     to: parseAsString.withDefault(defaultValue.to),
+    period: parseAsString.withDefault(defaultValue.period),
   });
   const { pageviews, isLoading } = useGetAnalyticsPageviews({
     websiteId,
@@ -50,7 +51,12 @@ export const AnalyticsFeed = ({ websiteId, defaultValue }: Props) => {
   return (
     <>
       <StatsFeed pageviews={pageviews} />
-      <VisitorsViewsChart />
+      <VisitorsViewsChart
+        pageviews={pageviews}
+        from={params.from}
+        to={params.to}
+        period={params.period}
+      />
       <TopPagesFeed pageviews={pageviews} />
       <TopReferrersFeed pageviews={pageviews} />
       <TopCountriesFeed pageviews={pageviews} />
