@@ -2,23 +2,20 @@ import { getSessionCookie } from "better-auth/cookies";
 import { type NextRequest, NextResponse } from "next/server";
 import { ROUTES } from "./lib/routes";
 
-export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
+};
 
-  // --- ADD THIS CHECK ---
-  // Explicitly bypass middleware logic for API routes and specific files
-  if (
-    pathname.startsWith("/api/") || // Allow all API routes
-    pathname.startsWith("/_next/static/") ||
-    pathname.startsWith("/_next/image/") ||
-    pathname === "/favicon.ico" ||
-    pathname === "/sitemap.xml" ||
-    pathname === "/robots.txt" ||
-    pathname === "/script.js" // Also explicitly allow the script itself
-  ) {
-    return NextResponse.next();
-  }
-
+export default async function middleware(request: NextRequest) {
   const cookies = getSessionCookie(request);
 
   // If authenticated, but login page
@@ -37,16 +34,3 @@ export function middleware(request: NextRequest) {
 
   return NextResponse.next();
 }
-
-export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
-  ],
-};
