@@ -20,17 +20,15 @@ import {
 import * as React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
-// Define the props for the component
 type VisitorsViewsChartProps = {
   pageviews: Pageviews[];
-  from: string; // Expecting YYYY-MM-DD string
-  to: string; // Expecting YYYY-MM-DD string
-  period: string; // Add period prop (e.g., "7d", "6m", "12m")
+  from: string;
+  to: string;
+  period: string;
 };
 
-// Define the structure for processed chart data
 type ChartDataPoint = {
-  date: string; // Formatted date string (e.g., "MMM dd")
+  date: string;
   views: number;
   visitors: number;
 };
