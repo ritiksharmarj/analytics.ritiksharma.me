@@ -9,6 +9,7 @@ export const analyticsQueryKeys = {
   analyticsTopPages: "analyticsTopPages",
   analyticsTopReferrers: "analyticsTopReferrers",
   analyticsTopCountries: "analyticsTopCountries",
+  analyticsTopBrowsers: "analyticsTopBrowsers",
 };
 
 type AnalyticsQueryProps = { websiteId: string; from: string; to: string };
@@ -142,4 +143,32 @@ export const useGetAnalyticsTopCountries = ({
   const topCountries = data as TopCountryItem[] | undefined;
 
   return { topCountries, isLoading };
+};
+
+type TopBrowserItem = {
+  browser: string;
+  count: number;
+};
+
+export const useGetAnalyticsTopBrowsers = ({
+  websiteId,
+  from,
+  to,
+}: AnalyticsQueryProps) => {
+  const getAnalyticsTopBrowsers = () => {
+    return getRequest({
+      url: API_ROUTES.TOP_BROWSERS(websiteId),
+      params: { from, to },
+    });
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: [analyticsQueryKeys.analyticsTopBrowsers, websiteId, from, to],
+    queryFn: getAnalyticsTopBrowsers,
+    enabled: !!websiteId,
+  });
+
+  const topBrowsers = data as TopBrowserItem[] | undefined;
+
+  return { topBrowsers, isLoading };
 };
