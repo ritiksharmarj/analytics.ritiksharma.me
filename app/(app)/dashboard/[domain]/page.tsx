@@ -7,7 +7,7 @@ import * as React from "react";
 import { AnalyticsFeed } from "./analytics-feed";
 
 const defaultValue = {
-  from: startOfDay(subDays(new Date(), 7)).toISOString(),
+  from: startOfDay(subDays(new Date(), 6)).toISOString(),
   to: new Date().toISOString(),
   period: "7d",
 };

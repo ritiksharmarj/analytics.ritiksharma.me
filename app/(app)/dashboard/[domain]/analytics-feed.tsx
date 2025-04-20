@@ -51,13 +51,13 @@ export const AnalyticsFeed = ({ websiteId, defaultValue }: Props) => {
   return (
     <>
       <StatsFeed pageviews={pageviews} />
-      <VisitorsViewsChart
+      {/* <VisitorsViewsChart
         pageviews={pageviews}
         from={params.from}
         to={params.to}
         period={params.period}
-      />
-      <TopPagesFeed pageviews={pageviews} />
+      /> */}
+      <TopPagesFeed websiteId={websiteId} from={params.from} to={params.to} />
       <TopReferrersFeed pageviews={pageviews} />
       <TopCountriesFeed pageviews={pageviews} />
       <TopBrowsersFeed pageviews={pageviews} />

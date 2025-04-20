@@ -1,19 +1,21 @@
+import { TopFeedSkeleton } from "@/components/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Pageviews } from "@/lib/db/schema";
+import { useGetAnalyticsTopPages } from "@/hooks/use-analytics";
 
-export const TopPagesFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
-  const pagesByViews = pageviews.reduce(
-    (acc, pv) => {
-      acc[pv.path] = (acc[pv.path] || 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>,
-  );
+type Props = {
+  websiteId: string;
+  from: string;
+  to: string;
+};
 
-  const topPages = Object.entries(pagesByViews)
-    .map(([page, count]) => ({ page, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 8);
+export const TopPagesFeed = ({ websiteId, from, to }: Props) => {
+  const { topPages, isLoading } = useGetAnalyticsTopPages({
+    websiteId,
+    from,
+    to,
+  });
+
+  if (isLoading) return <TopFeedSkeleton title="Top Pages" />;
 
   return (
     <>
@@ -23,15 +25,19 @@ export const TopPagesFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4 text-sm">
-            {topPages.map((item) => (
-              <div
-                key={item.page}
-                className="flex items-center justify-between gap-4"
-              >
-                <div className="truncate">{item.page}</div>
-                <div className="font-medium">{item.count}</div>
-              </div>
-            ))}
+            {!topPages?.length ? (
+              <div>No page data available.</div>
+            ) : (
+              topPages.map((item) => (
+                <div
+                  key={item.page}
+                  className="flex items-center justify-between gap-4"
+                >
+                  <div className="truncate">{item.page}</div>
+                  <div className="font-medium">{item.count}</div>
+                </div>
+              ))
+            )}
           </div>
         </CardContent>
       </Card>

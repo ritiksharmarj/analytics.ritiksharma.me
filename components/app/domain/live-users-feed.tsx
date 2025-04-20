@@ -13,8 +13,8 @@ export const LiveUsersFeed = ({ websiteId }: { websiteId: string }) => {
   return (
     <div className="flex items-center gap-2">
       <div className="relative flex size-2">
-        <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-400 opacity-75" />
-        <span className="relative inline-flex size-2 rounded-full bg-green-500" />
+        <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-500 opacity-75" />
+        <span className="relative inline-flex size-2 rounded-full bg-green-600" />
       </div>
       <div className="text-sm">{liveUsersCount} current visitors</div>
     </div>
