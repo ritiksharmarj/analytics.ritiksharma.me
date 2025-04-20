@@ -33,18 +33,7 @@ export const AnalyticsFeed = ({ websiteId, defaultValue }: Props) => {
     to: params.to,
   });
 
-  if (isLoading)
-    return (
-      <>
-        <StatsFeedSkeleton />
-        <TopFeedSkeleton title="Top Pages" />
-        <TopFeedSkeleton title="Top Referrers" />
-        <TopFeedSkeleton title="Top Countries" />
-        <TopFeedSkeleton title="Browsers" />
-        <TopFeedSkeleton title="Devices" />
-        <TopFeedSkeleton title="OS" />
-      </>
-    );
+  if (isLoading) return <StatsFeedSkeleton />;
 
   if (!pageviews?.length) return <div>No data</div>;
 
@@ -74,7 +63,7 @@ export const AnalyticsFeed = ({ websiteId, defaultValue }: Props) => {
         to={params.to}
       />
       <TopDevicesFeed websiteId={websiteId} from={params.from} to={params.to} />
-      <TopOSFeed pageviews={pageviews} />
+      <TopOSFeed websiteId={websiteId} from={params.from} to={params.to} />
     </>
   );
 };

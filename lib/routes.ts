@@ -11,6 +11,7 @@ export const API_ROUTES = {
   TOP_COUNTRIES: (websiteId: string) => `/api/websites/${websiteId}/countries`,
   TOP_BROWSERS: (websiteId: string) => `/api/websites/${websiteId}/browsers`,
   TOP_DEVICES: (websiteId: string) => `/api/websites/${websiteId}/devices`,
+  TOP_OS: (websiteId: string) => `/api/websites/${websiteId}/os`,
 };
 
 export const AUTH_ROUTES = [ROUTES.ROOT];
