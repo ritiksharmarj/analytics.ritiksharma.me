@@ -1,9 +1,4 @@
-## TODOs
-
-- [ ] test with public script
-- [ ] add live visitors
-
-## Required
+## TODO
 
 - [ ] fix script for SPA
 - [ ] minify and compress script

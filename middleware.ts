@@ -1,6 +1,6 @@
+import { AUTH_ROUTES, PUBLIC_ROUTES, ROUTES } from "@/lib/routes";
 import { getSessionCookie } from "better-auth/cookies";
 import { type NextRequest, NextResponse } from "next/server";
-import { AUTH_ROUTES, PUBLIC_ROUTES, ROUTES } from "./lib/routes";
 
 export const config = {
   matcher: [
