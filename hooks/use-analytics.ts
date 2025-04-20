@@ -10,6 +10,7 @@ export const analyticsQueryKeys = {
   analyticsTopReferrers: "analyticsTopReferrers",
   analyticsTopCountries: "analyticsTopCountries",
   analyticsTopBrowsers: "analyticsTopBrowsers",
+  analyticsTopDevices: "analyticsTopDevices",
 };
 
 type AnalyticsQueryProps = { websiteId: string; from: string; to: string };
@@ -171,4 +172,32 @@ export const useGetAnalyticsTopBrowsers = ({
   const topBrowsers = data as TopBrowserItem[] | undefined;
 
   return { topBrowsers, isLoading };
+};
+
+type TopDeviceItem = {
+  device: string;
+  count: number;
+};
+
+export const useGetAnalyticsTopDevices = ({
+  websiteId,
+  from,
+  to,
+}: AnalyticsQueryProps) => {
+  const getAnalyticsTopDevices = () => {
+    return getRequest({
+      url: API_ROUTES.TOP_DEVICES(websiteId),
+      params: { from, to },
+    });
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: [analyticsQueryKeys.analyticsTopDevices, websiteId, from, to],
+    queryFn: getAnalyticsTopDevices,
+    enabled: !!websiteId,
+  });
+
+  const topDevices = data as TopDeviceItem[] | undefined;
+
+  return { topDevices, isLoading };
 };

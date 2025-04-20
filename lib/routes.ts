@@ -10,6 +10,7 @@ export const API_ROUTES = {
   TOP_REFERRERS: (websiteId: string) => `/api/websites/${websiteId}/referrers`,
   TOP_COUNTRIES: (websiteId: string) => `/api/websites/${websiteId}/countries`,
   TOP_BROWSERS: (websiteId: string) => `/api/websites/${websiteId}/browsers`,
+  TOP_DEVICES: (websiteId: string) => `/api/websites/${websiteId}/devices`,
 };
 
 export const AUTH_ROUTES = [ROUTES.ROOT];

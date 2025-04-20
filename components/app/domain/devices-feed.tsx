@@ -1,20 +1,21 @@
+import { TopFeedSkeleton } from "@/components/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Pageviews } from "@/lib/db/schema";
+import { useGetAnalyticsTopDevices } from "@/hooks/use-analytics";
 
-export const TopDevicesFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
-  const screenSizesByCount = pageviews.reduce(
-    (acc, pv) => {
-      const title = pv.device || "Unknown";
-      acc[title] = (acc[title] || 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>,
-  );
+type Props = {
+  websiteId: string;
+  from: string;
+  to: string;
+};
 
-  const topScreenSizes = Object.entries(screenSizesByCount)
-    .map(([title, count]) => ({ title, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 8);
+export const TopDevicesFeed = ({ websiteId, from, to }: Props) => {
+  const { topDevices, isLoading } = useGetAnalyticsTopDevices({
+    websiteId,
+    from,
+    to,
+  });
+
+  if (isLoading) return <TopFeedSkeleton title="Devices" />;
 
   return (
     <>
@@ -24,15 +25,19 @@ export const TopDevicesFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4 text-sm">
-            {topScreenSizes.map((item) => (
-              <div
-                key={item.title}
-                className="flex items-center justify-between gap-4"
-              >
-                <div className="capitalize">{item.title}</div>
-                <div className="font-medium">{item.count}</div>
-              </div>
-            ))}
+            {!topDevices?.length ? (
+              <div>No devices data available.</div>
+            ) : (
+              topDevices.map((item) => (
+                <div
+                  key={item.device}
+                  className="flex items-center justify-between gap-4"
+                >
+                  <div className="capitalize">{item.device}</div>
+                  <div className="font-medium">{item.count}</div>
+                </div>
+              ))
+            )}
           </div>
         </CardContent>
       </Card>
