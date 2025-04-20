@@ -7,6 +7,7 @@ export const ROUTES = {
 export const API_ROUTES = {
   CURRENT_VISITORS: (websiteId: string) => `/api/websites/${websiteId}/live`,
   TOP_PAGES: (websiteId: string) => `/api/websites/${websiteId}/pages`,
+  TOP_REFERRERS: (websiteId: string) => `/api/websites/${websiteId}/referrers`,
 };
 
 export const AUTH_ROUTES = [ROUTES.ROOT];

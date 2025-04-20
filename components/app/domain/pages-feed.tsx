@@ -26,7 +26,7 @@ export const TopPagesFeed = ({ websiteId, from, to }: Props) => {
         <CardContent>
           <div className="space-y-4 text-sm">
             {!topPages?.length ? (
-              <div>No page data available.</div>
+              <div>No pages data available.</div>
             ) : (
               topPages.map((item) => (
                 <div

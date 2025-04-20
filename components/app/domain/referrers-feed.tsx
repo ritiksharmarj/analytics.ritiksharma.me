@@ -1,31 +1,21 @@
+import { TopFeedSkeleton } from "@/components/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Pageviews } from "@/lib/db/schema";
+import { useGetAnalyticsTopReferrers } from "@/hooks/use-analytics";
 
-export const TopReferrersFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
-  const referrersByCount = pageviews.reduce(
-    (acc, pv) => {
-      if (pv.referrer && pv.referrer.trim() !== "") {
-        // Extract domain from referrer URL
-        let referrer = pv.referrer;
-        try {
-          const url = new URL(pv.referrer);
-          referrer = url.hostname;
-        } catch (e) {
-          // If not a valid URL, use as is
-        }
-        acc[referrer] = (acc[referrer] || 0) + 1;
-      } else {
-        acc["Direct / None"] = (acc["Direct / None"] || 0) + 1;
-      }
-      return acc;
-    },
-    {} as Record<string, number>,
-  );
+type Props = {
+  websiteId: string;
+  from: string;
+  to: string;
+};
 
-  const topReferrers = Object.entries(referrersByCount)
-    .map(([referrer, count]) => ({ referrer, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 8);
+export const TopReferrersFeed = ({ websiteId, from, to }: Props) => {
+  const { topReferrers, isLoading } = useGetAnalyticsTopReferrers({
+    websiteId,
+    from,
+    to,
+  });
+
+  if (isLoading) return <TopFeedSkeleton title="Top Referrers" />;
 
   return (
     <>
@@ -35,15 +25,19 @@ export const TopReferrersFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4 text-sm">
-            {topReferrers.map((item) => (
-              <div
-                key={item.referrer}
-                className="flex items-center justify-between gap-4"
-              >
-                <div className="truncate">{item.referrer}</div>
-                <div className="font-medium">{item.count}</div>
-              </div>
-            ))}
+            {!topReferrers?.length ? (
+              <div>No referrers data available.</div>
+            ) : (
+              topReferrers.map((item) => (
+                <div
+                  key={item.referrer}
+                  className="flex items-center justify-between gap-4"
+                >
+                  <div className="truncate">{item.referrer}</div>
+                  <div className="font-medium">{item.count}</div>
+                </div>
+              ))
+            )}
           </div>
         </CardContent>
       </Card>

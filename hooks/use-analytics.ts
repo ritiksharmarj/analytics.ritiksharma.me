@@ -7,6 +7,7 @@ export const analyticsQueryKeys = {
   analyticsPageviews: "analyticsPageviews",
   analyticsLiveUsersCount: "analyticsLiveUsersCount",
   analyticsTopPages: "analyticsTopPages",
+  analyticsTopReferrers: "analyticsTopReferrers",
 };
 
 type AnalyticsQueryProps = { websiteId: string; from: string; to: string };
@@ -84,4 +85,32 @@ export const useGetAnalyticsTopPages = ({
   const topPages = data as TopPageItem[] | undefined;
 
   return { topPages, isLoading };
+};
+
+type TopReferrerItem = {
+  referrer: string;
+  count: number;
+};
+
+export const useGetAnalyticsTopReferrers = ({
+  websiteId,
+  from,
+  to,
+}: AnalyticsQueryProps) => {
+  const getAnalyticsTopReferrers = () => {
+    return getRequest({
+      url: API_ROUTES.TOP_REFERRERS(websiteId),
+      params: { from, to },
+    });
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: [analyticsQueryKeys.analyticsTopReferrers, websiteId, from, to],
+    queryFn: getAnalyticsTopReferrers,
+    enabled: !!websiteId,
+  });
+
+  const topReferrers = data as TopReferrerItem[] | undefined;
+
+  return { topReferrers, isLoading };
 };
