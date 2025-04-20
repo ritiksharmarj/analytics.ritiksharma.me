@@ -1,27 +1,29 @@
+import { TopFeedSkeleton } from "@/components/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useGetAnalyticsTopCountries } from "@/hooks/use-analytics";
 import countryNames from "@/lib/data/en-US.json";
-import type { Pageviews } from "@/lib/db/schema";
 
 const countryCodeToName = countryNames as Record<string, string>;
 
-export const TopCountriesFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
-  const countriesByCount = pageviews.reduce(
-    (acc, pv) => {
-      const code = pv.countryCode || "Unknown";
-      acc[code] = (acc[code] || 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>,
-  );
+type Props = {
+  websiteId: string;
+  from: string;
+  to: string;
+};
 
-  const topCountries = Object.entries(countriesByCount)
-    .map(([code, count]) => ({
-      code,
-      name: countryCodeToName[code] || code,
-      count,
-    }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 8);
+export const TopCountriesFeed = ({ websiteId, from, to }: Props) => {
+  const { topCountries, isLoading } = useGetAnalyticsTopCountries({
+    websiteId,
+    from,
+    to,
+  });
+
+  if (isLoading) return <TopFeedSkeleton title="Top Countries" />;
+
+  const topCountriesWithName = topCountries?.map((item) => ({
+    ...item,
+    name: countryCodeToName[item.code] || item.code,
+  }));
 
   return (
     <>
@@ -31,15 +33,19 @@ export const TopCountriesFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4 text-sm">
-            {topCountries.map((item) => (
-              <div
-                key={item.code}
-                className="flex items-center justify-between gap-4"
-              >
-                <div>{item.name}</div>
-                <div className="font-medium">{item.count}</div>
-              </div>
-            ))}
+            {!topCountriesWithName?.length ? (
+              <div>No countries data available.</div>
+            ) : (
+              topCountriesWithName.map((item) => (
+                <div
+                  key={item.code}
+                  className="flex items-center justify-between gap-4"
+                >
+                  <div>{item.name}</div>
+                  <div className="font-medium">{item.count}</div>
+                </div>
+              ))
+            )}
           </div>
         </CardContent>
       </Card>

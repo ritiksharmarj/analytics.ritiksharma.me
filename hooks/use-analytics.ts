@@ -8,6 +8,7 @@ export const analyticsQueryKeys = {
   analyticsLiveUsersCount: "analyticsLiveUsersCount",
   analyticsTopPages: "analyticsTopPages",
   analyticsTopReferrers: "analyticsTopReferrers",
+  analyticsTopCountries: "analyticsTopCountries",
 };
 
 type AnalyticsQueryProps = { websiteId: string; from: string; to: string };
@@ -113,4 +114,32 @@ export const useGetAnalyticsTopReferrers = ({
   const topReferrers = data as TopReferrerItem[] | undefined;
 
   return { topReferrers, isLoading };
+};
+
+type TopCountryItem = {
+  code: string;
+  count: number;
+};
+
+export const useGetAnalyticsTopCountries = ({
+  websiteId,
+  from,
+  to,
+}: AnalyticsQueryProps) => {
+  const getAnalyticsTopCountries = () => {
+    return getRequest({
+      url: API_ROUTES.TOP_COUNTRIES(websiteId),
+      params: { from, to },
+    });
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: [analyticsQueryKeys.analyticsTopCountries, websiteId, from, to],
+    queryFn: getAnalyticsTopCountries,
+    enabled: !!websiteId,
+  });
+
+  const topCountries = data as TopCountryItem[] | undefined;
+
+  return { topCountries, isLoading };
 };
