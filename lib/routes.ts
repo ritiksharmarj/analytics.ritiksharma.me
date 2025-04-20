@@ -1,8 +1,8 @@
 export const ROUTES = {
   ROOT: "/",
+  DOCS: "/docs",
   DASHBOARD: "/dashboard",
 };
 
 export const AUTH_ROUTES = [ROUTES.ROOT];
-
-export const PUBLIC_API_ROUTES = ["/api/events"];
+export const PUBLIC_ROUTES = [ROUTES.DOCS];
