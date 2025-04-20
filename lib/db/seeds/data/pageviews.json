@@ -7,8 +7,8 @@
     "browser": "Chrome",
     "os": "Mac OS",
     "device": "desktop",
-    "sessionId": "session-1",
-    "visitId": "visit-1"
+    "sessionId": "session-d7-1",
+    "visitId": "visit-d7-1-1"
   },
   {
     "path": "/blog",
@@ -18,8 +18,8 @@
     "browser": "Chrome",
     "os": "Windows",
     "device": "desktop",
-    "sessionId": "session-2",
-    "visitId": "visit-2"
+    "sessionId": "session-d7-2",
+    "visitId": "visit-d7-2-1"
   },
   {
     "path": "/projects",
@@ -29,8 +29,8 @@
     "browser": "Safari",
     "os": "iOS",
     "device": "Mobile",
-    "sessionId": "session-3",
-    "visitId": "visit-3"
+    "sessionId": "session-d7-3",
+    "visitId": "visit-d7-3-1"
   },
   {
     "path": "/about",
@@ -40,8 +40,8 @@
     "browser": "Chrome",
     "os": "Linux",
     "device": "desktop",
-    "sessionId": "session-4",
-    "visitId": "visit-4"
+    "sessionId": "session-d6-1",
+    "visitId": "visit-d6-1-1"
   },
   {
     "path": "/blog/first-post",
@@ -51,8 +51,8 @@
     "browser": "Chrome",
     "os": "Mac OS",
     "device": "desktop",
-    "sessionId": "session-5",
-    "visitId": "visit-5"
+    "sessionId": "session-d6-2",
+    "visitId": "visit-d6-2-1"
   },
   {
     "path": "/contact",
@@ -62,8 +62,8 @@
     "browser": "Safari",
     "os": "iOS",
     "device": "tablet",
-    "sessionId": "session-6",
-    "visitId": "visit-6"
+    "sessionId": "session-d6-3",
+    "visitId": "visit-d6-3-1"
   },
   {
     "path": "/",
@@ -73,8 +73,8 @@
     "browser": "Chrome",
     "os": "Windows",
     "device": "desktop",
-    "sessionId": "session-7",
-    "visitId": "visit-7"
+    "sessionId": "session-d6-4",
+    "visitId": "visit-d6-4-1"
   },
   {
     "path": "/tech-stack",
@@ -84,7 +84,161 @@
     "browser": "Chrome",
     "os": "Android",
     "device": "Mobile",
-    "sessionId": "session-8",
-    "visitId": "visit-8"
+    "sessionId": "session-d5-1",
+    "visitId": "visit-d5-1-1"
+  },
+  {
+    "path": "/",
+    "countryCode": "US",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+    "referrer": "https://google.com",
+    "browser": "Chrome",
+    "os": "Mac OS",
+    "device": "desktop",
+    "sessionId": "session-d5-2",
+    "visitId": "visit-d5-2-1"
+  },
+  {
+    "path": "/blog",
+    "countryCode": "GB",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0",
+    "referrer": "https://duckduckgo.com",
+    "browser": "Firefox",
+    "os": "Windows",
+    "device": "desktop",
+    "sessionId": "session-d5-3",
+    "visitId": "visit-d5-3-1"
+  },
+  {
+    "path": "/projects",
+    "countryCode": "DE",
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1",
+    "referrer": "https://ritiksharma.me/",
+    "browser": "Safari",
+    "os": "iOS",
+    "device": "Mobile",
+    "sessionId": "session-d4-1",
+    "visitId": "visit-d4-1-1"
+  },
+  {
+    "path": "/about",
+    "countryCode": "CA",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36",
+    "referrer": "https://linkedin.com",
+    "browser": "Chrome",
+    "os": "Mac OS",
+    "device": "desktop",
+    "sessionId": "session-d4-2",
+    "visitId": "visit-d4-2-1"
+  },
+  {
+    "path": "/",
+    "countryCode": "IN",
+    "userAgent": "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.210 Mobile Safari/537.36",
+    "referrer": "https://google.com",
+    "browser": "Chrome",
+    "os": "Android",
+    "device": "Mobile",
+    "sessionId": "session-d4-3",
+    "visitId": "visit-d4-3-1"
+  },
+  {
+    "path": "/blog/first-post",
+    "countryCode": "US",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36",
+    "referrer": "https://ritiksharma.me/blog",
+    "browser": "Chrome",
+    "os": "Windows",
+    "device": "desktop",
+    "sessionId": "session-d3-1",
+    "visitId": "visit-d3-1-1"
+  },
+  {
+    "path": "/tech-stack",
+    "countryCode": "JP",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15",
+    "referrer": "",
+    "browser": "Safari",
+    "os": "Mac OS",
+    "device": "desktop",
+    "sessionId": "session-d3-2",
+    "visitId": "visit-d3-2-1"
+  },
+  {
+    "path": "/contact",
+    "countryCode": "AU",
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Mobile/15E148 Safari/604.1",
+    "referrer": "https://google.com",
+    "browser": "Safari",
+    "os": "iOS",
+    "device": "Mobile",
+    "sessionId": "session-d3-3",
+    "visitId": "visit-d3-3-1"
+  },
+  {
+    "path": "/",
+    "countryCode": "DE",
+    "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0",
+    "referrer": "https://duckduckgo.com",
+    "browser": "Firefox",
+    "os": "Linux",
+    "device": "desktop",
+    "sessionId": "session-d2-1",
+    "visitId": "visit-d2-1-1"
+  },
+  {
+    "path": "/blog",
+    "countryCode": "FR",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; SM-A205U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36",
+    "referrer": "https://dev.to",
+    "browser": "Chrome",
+    "os": "Android",
+    "device": "Mobile",
+    "sessionId": "session-d2-2",
+    "visitId": "visit-d2-2-1"
+  },
+  {
+    "path": "/projects",
+    "countryCode": "US",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/91.0.864.59",
+    "referrer": "https://bing.com",
+    "browser": "Edge",
+    "os": "Windows",
+    "device": "desktop",
+    "sessionId": "session-d2-3",
+    "visitId": "visit-d2-3-1"
+  },
+  {
+    "path": "/about",
+    "countryCode": "CA",
+    "userAgent": "Mozilla/5.0 (iPad; CPU OS 14_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/91.0.4472.80 Mobile/15E148 Safari/604.1",
+    "referrer": "https://google.ca",
+    "browser": "Chrome",
+    "os": "iOS",
+    "device": "tablet",
+    "sessionId": "session-d1-1",
+    "visitId": "visit-d1-1-1"
+  },
+  {
+    "path": "/",
+    "countryCode": "GB",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+    "referrer": "https://github.com",
+    "browser": "Chrome",
+    "os": "Mac OS",
+    "device": "desktop",
+    "sessionId": "session-d1-2",
+    "visitId": "visit-d1-2-1"
+  },
+  {
+    "path": "/blog/first-post",
+    "countryCode": "IN",
+    "userAgent": "Mozilla/5.0 (Linux; Android 11; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36",
+    "referrer": "https://ritiksharma.me/blog",
+    "browser": "Chrome",
+    "os": "Android",
+    "device": "Mobile",
+    "sessionId": "session-d1-3",
+    "visitId": "visit-d1-3-1"
   }
 ]
