@@ -1,11 +1,7 @@
 "use client";
 
-import { signOut, useSession } from "@/lib/auth/client";
-import { ROUTES } from "@/lib/routes";
-import { BookOpenIcon, CircleHelpIcon, LogOutIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +10,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
+import { signOut, useSession } from "@/lib/auth/client";
+import { ROUTES } from "@/lib/routes";
+import { BookOpenIcon, GitBranchIcon, LogOutIcon } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const AppHeader = () => {
   const router = useRouter();
@@ -50,13 +51,21 @@ export const AppHeader = () => {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <BookOpenIcon />
-              <span>Documentation</span>
+            <DropdownMenuItem asChild>
+              <Link href={ROUTES.DOCS}>
+                <BookOpenIcon />
+                <span>Documentation</span>
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <CircleHelpIcon />
-              <span>Contact us</span>
+            <DropdownMenuItem asChild>
+              <a
+                href="https://github.com/ritiksharmarj/analytics.ritiksharma.me"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GitBranchIcon />
+                <span>Open source</span>
+              </a>
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
