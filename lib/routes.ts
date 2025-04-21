@@ -12,7 +12,10 @@ export const API_ROUTES = {
   TOP_BROWSERS: (websiteId: string) => `/api/websites/${websiteId}/browsers`,
   TOP_DEVICES: (websiteId: string) => `/api/websites/${websiteId}/devices`,
   TOP_OS: (websiteId: string) => `/api/websites/${websiteId}/os`,
-  TOP_STATS: (websiteId: string) => `/api/websites/${websiteId}/stats`,
+  STATS: {
+    STATS: (websiteId: string) => `/api/websites/${websiteId}/stats`,
+    TRAFFIC: (websiteId: string) => `/api/websites/${websiteId}/stats/traffic`,
+  },
 };
 
 export const AUTH_ROUTES = [ROUTES.ROOT];

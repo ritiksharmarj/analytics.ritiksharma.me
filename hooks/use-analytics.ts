@@ -13,9 +13,15 @@ export const analyticsQueryKeys = {
   analyticsTopDevices: "analyticsTopDevices",
   analyticsTopOS: "analyticsTopOS",
   analyticsStats: "analyticsStats",
+  analyticsStatsTraffic: "analyticsStatsTraffic",
 };
 
-type AnalyticsQueryProps = { websiteId: string; from: string; to: string };
+type AnalyticsQueryProps = {
+  websiteId: string;
+  from: string;
+  to: string;
+  period?: string;
+};
 
 export const useGetAnalyticsPageviews = ({
   websiteId,
@@ -246,7 +252,7 @@ export const useGetAnalyticsStats = ({
 }: AnalyticsQueryProps) => {
   const getAnalyticsStats = () => {
     return getRequest({
-      url: API_ROUTES.TOP_STATS(websiteId),
+      url: API_ROUTES.STATS.STATS(websiteId),
       params: { from, to },
     });
   };
@@ -260,4 +266,34 @@ export const useGetAnalyticsStats = ({
   const stats = data as AnalyticsStatsItem | undefined;
 
   return { stats, isLoading };
+};
+
+type trafficDataItem = {
+  date: string;
+  views: number;
+  visitors: number;
+};
+
+export const useGetAnalyticsStatsTraffic = ({
+  websiteId,
+  from,
+  to,
+  period,
+}: AnalyticsQueryProps) => {
+  const getAnalyticsStatsTraffic = () => {
+    return getRequest({
+      url: API_ROUTES.STATS.TRAFFIC(websiteId),
+      params: { from, to, period },
+    });
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: [analyticsQueryKeys.analyticsStats, websiteId, from, to, period],
+    queryFn: getAnalyticsStatsTraffic,
+    enabled: !!websiteId,
+  });
+
+  const trafficStats = data as trafficDataItem[] | undefined;
+
+  return { trafficStats, isLoading };
 };

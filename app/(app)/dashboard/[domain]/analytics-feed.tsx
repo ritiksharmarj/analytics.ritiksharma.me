@@ -8,8 +8,6 @@ import { TopPagesFeed } from "@/components/app/domain/pages-feed";
 import { TopReferrersFeed } from "@/components/app/domain/referrers-feed";
 import { StatsFeed } from "@/components/app/domain/stats-feed";
 import { VisitorsViewsChart } from "@/components/app/domain/visitors-views-chart";
-import { StatsFeedSkeleton, TopFeedSkeleton } from "@/components/skeleton";
-import { useGetAnalyticsPageviews } from "@/hooks/use-analytics";
 import { parseAsString, useQueryStates } from "nuqs";
 
 type Props = {
@@ -27,25 +25,16 @@ export const AnalyticsFeed = ({ websiteId, defaultValue }: Props) => {
     to: parseAsString.withDefault(defaultValue.to),
     period: parseAsString.withDefault(defaultValue.period),
   });
-  // const { pageviews, isLoading } = useGetAnalyticsPageviews({
-  //   websiteId,
-  //   from: params.from,
-  //   to: params.to,
-  // });
-
-  // if (isLoading) return <StatsFeedSkeleton />;
-
-  // if (!pageviews?.length) return <div>No data</div>;
 
   return (
     <>
       <StatsFeed websiteId={websiteId} from={params.from} to={params.to} />
-      {/* <VisitorsViewsChart
-        pageviews={pageviews}
+      <VisitorsViewsChart
+        websiteId={websiteId}
         from={params.from}
         to={params.to}
         period={params.period}
-      /> */}
+      />
       <TopPagesFeed websiteId={websiteId} from={params.from} to={params.to} />
       <TopReferrersFeed
         websiteId={websiteId}
