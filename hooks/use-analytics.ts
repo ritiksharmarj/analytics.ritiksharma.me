@@ -268,7 +268,7 @@ export const useGetAnalyticsStats = ({
   return { stats, isLoading };
 };
 
-type trafficDataItem = {
+export type trafficDataItem = {
   date: string;
   views: number;
   visitors: number;

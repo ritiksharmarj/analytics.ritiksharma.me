@@ -9,8 +9,18 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { useGetAnalyticsStatsTraffic } from "@/hooks/use-analytics";
-import { format, parseISO } from "date-fns";
+import {
+  type trafficDataItem,
+  useGetAnalyticsStatsTraffic,
+} from "@/hooks/use-analytics";
+import {
+  eachDayOfInterval,
+  eachMonthOfInterval,
+  format,
+  parseISO,
+  startOfDay,
+  startOfMonth,
+} from "date-fns";
 import * as React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
@@ -40,14 +50,10 @@ export const VisitorsViewsChart = ({ websiteId, from, to, period }: Props) => {
     period,
   });
 
-  const chartData = React.useMemo(() => {
-    const dateformat = period.endsWith("m") ? "MMM yyyy" : "MMM dd";
-
-    return trafficStats?.map((item) => ({
-      ...item,
-      date: format(parseISO(item.date), dateformat),
-    }));
-  }, [trafficStats, period]);
+  const chartData = React.useMemo(
+    () => processChartData(trafficStats, from, to, period),
+    [trafficStats, from, to, period],
+  );
 
   if (isLoading)
     return (
@@ -55,15 +61,6 @@ export const VisitorsViewsChart = ({ websiteId, from, to, period }: Props) => {
         <div>chart data loading...</div>
       </Card>
     );
-
-  if (!chartData?.length)
-    return (
-      <Card className="col-span-full max-h-[460px]">
-        <div>no data available</div>
-      </Card>
-    );
-
-  console.log(trafficStats);
 
   return (
     <Card className="col-span-full max-h-[460px]">
@@ -94,4 +91,49 @@ export const VisitorsViewsChart = ({ websiteId, from, to, period }: Props) => {
       </ChartContainer>
     </Card>
   );
+};
+
+const processChartData = (
+  trafficStats: trafficDataItem[] | undefined,
+  from: string,
+  to: string,
+  period: string,
+) => {
+  const startDate = parseISO(from);
+  const endDate = parseISO(to);
+  const isMonthly = period.endsWith("m");
+  const intervalFn = isMonthly ? eachMonthOfInterval : eachDayOfInterval;
+  const displayFormat = isMonthly ? "MMM yyyy" : "MMM dd";
+  const startOfIntervalFn = isMonthly ? startOfMonth : startOfDay;
+
+  // 1. Generate the full date range (as Date objects)
+  const dateRange = intervalFn({ start: startDate, end: endDate });
+
+  // 2. Create a lookup map from the fetched trafficStats for efficient merging.
+  // Key: Timestamp of the start of the day/month.
+  // Value: Corresponding views and visitors count.
+  const statsMap = new Map<number, { views: number; visitors: number }>();
+  if (trafficStats) {
+    for (const item of trafficStats) {
+      const itemDate = parseISO(item.date);
+      const keyDate = startOfIntervalFn(itemDate);
+
+      statsMap.set(keyDate.getTime(), {
+        views: item.views,
+        visitors: item.visitors,
+      });
+    }
+  }
+
+  // 3. Map the full date range, merging data from the statsMap
+  return dateRange.map((dateInInterval) => {
+    const keyDate = startOfIntervalFn(dateInInterval);
+    const stats = statsMap.get(keyDate.getTime());
+
+    return {
+      date: format(dateInInterval, displayFormat),
+      views: stats?.views ?? 0,
+      visitors: stats?.visitors ?? 0,
+    };
+  });
 };
