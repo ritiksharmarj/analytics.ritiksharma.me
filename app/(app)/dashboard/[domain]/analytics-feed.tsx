@@ -27,19 +27,19 @@ export const AnalyticsFeed = ({ websiteId, defaultValue }: Props) => {
     to: parseAsString.withDefault(defaultValue.to),
     period: parseAsString.withDefault(defaultValue.period),
   });
-  const { pageviews, isLoading } = useGetAnalyticsPageviews({
-    websiteId,
-    from: params.from,
-    to: params.to,
-  });
+  // const { pageviews, isLoading } = useGetAnalyticsPageviews({
+  //   websiteId,
+  //   from: params.from,
+  //   to: params.to,
+  // });
 
-  if (isLoading) return <StatsFeedSkeleton />;
+  // if (isLoading) return <StatsFeedSkeleton />;
 
-  if (!pageviews?.length) return <div>No data</div>;
+  // if (!pageviews?.length) return <div>No data</div>;
 
   return (
     <>
-      <StatsFeed pageviews={pageviews} />
+      <StatsFeed websiteId={websiteId} from={params.from} to={params.to} />
       {/* <VisitorsViewsChart
         pageviews={pageviews}
         from={params.from}

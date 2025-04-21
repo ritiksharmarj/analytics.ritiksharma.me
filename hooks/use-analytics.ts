@@ -12,6 +12,7 @@ export const analyticsQueryKeys = {
   analyticsTopBrowsers: "analyticsTopBrowsers",
   analyticsTopDevices: "analyticsTopDevices",
   analyticsTopOS: "analyticsTopOS",
+  analyticsStats: "analyticsStats",
 };
 
 type AnalyticsQueryProps = { websiteId: string; from: string; to: string };
@@ -229,4 +230,34 @@ export const useGetAnalyticsTopOS = ({
   const topOS = data as TopOSItem[] | undefined;
 
   return { topOS, isLoading };
+};
+
+type AnalyticsStatsItem = {
+  totalPageviews: number;
+  totalVisits: number;
+  uniqueVisitors: number;
+  uniqueReferrers: number;
+};
+
+export const useGetAnalyticsStats = ({
+  websiteId,
+  from,
+  to,
+}: AnalyticsQueryProps) => {
+  const getAnalyticsStats = () => {
+    return getRequest({
+      url: API_ROUTES.TOP_STATS(websiteId),
+      params: { from, to },
+    });
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: [analyticsQueryKeys.analyticsStats, websiteId, from, to],
+    queryFn: getAnalyticsStats,
+    enabled: !!websiteId,
+  });
+
+  const stats = data as AnalyticsStatsItem | undefined;
+
+  return { stats, isLoading };
 };

@@ -1,29 +1,41 @@
+import { StatsFeedSkeleton } from "@/components/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Pageviews } from "@/lib/db/schema";
-import {
-  ActivityIcon,
-  EyeIcon,
-  GlobeIcon,
-  MonitorIcon,
-  UsersIcon,
-} from "lucide-react";
+import { useGetAnalyticsStats } from "@/hooks/use-analytics";
+import NumberFlow from "@number-flow/react";
+import { ActivityIcon, EyeIcon, GlobeIcon, UsersIcon } from "lucide-react";
 
-export const StatsFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
-  const totalPageviews = pageviews.length;
-  const uniqueVisitors = new Set(pageviews.map((pv) => pv.sessionId)).size;
-  const totalVisits = new Set(pageviews.map((pv) => pv.visitId)).size;
+type Props = {
+  websiteId: string;
+  from: string;
+  to: string;
+};
 
-  const uniqueReferrers = new Set(
-    pageviews
-      .map((pv) => pv.referrer)
-      .filter((ref) => ref && ref.trim() !== ""),
-  ).size;
+export const StatsFeed = ({ websiteId, from, to }: Props) => {
+  const { stats, isLoading } = useGetAnalyticsStats({ websiteId, from, to });
+
+  if (isLoading) return <StatsFeedSkeleton />;
 
   const statsData = [
-    { title: "Total Pageviews", value: totalPageviews, icon: EyeIcon },
-    { title: "Total Visits", value: totalVisits, icon: ActivityIcon },
-    { title: "Unique Visitors", value: uniqueVisitors, icon: UsersIcon },
-    { title: "Referring Sites", value: uniqueReferrers, icon: GlobeIcon },
+    {
+      title: "Total Pageviews",
+      value: stats?.totalPageviews ?? 0,
+      icon: EyeIcon,
+    },
+    {
+      title: "Total Visits",
+      value: stats?.totalVisits ?? 0,
+      icon: ActivityIcon,
+    },
+    {
+      title: "Unique Visitors",
+      value: stats?.uniqueVisitors ?? 0,
+      icon: UsersIcon,
+    },
+    {
+      title: "Referring Sites",
+      value: stats?.uniqueReferrers ?? 0,
+      icon: GlobeIcon,
+    },
   ];
 
   return (
@@ -35,7 +47,7 @@ export const StatsFeed = ({ pageviews }: { pageviews: Pageviews[] }) => {
             <data.icon className="size-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{data.value}</div>
+            <NumberFlow className="text-2xl font-bold" value={data.value} />
           </CardContent>
         </Card>
       ))}
