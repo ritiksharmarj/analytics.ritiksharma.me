@@ -2,7 +2,6 @@
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetAnalyticsLiveUsersCount } from "@/hooks/use-analytics";
-import NumberFlow from "@number-flow/react";
 
 export const LiveUsersFeed = ({ websiteId }: { websiteId: string }) => {
   const { liveUsersCount, isLoading } = useGetAnalyticsLiveUsersCount({
@@ -17,9 +16,7 @@ export const LiveUsersFeed = ({ websiteId }: { websiteId: string }) => {
         <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-500 opacity-75" />
         <span className="relative inline-flex size-2 rounded-full bg-green-600" />
       </div>
-      <div className="text-sm">
-        <NumberFlow value={liveUsersCount ?? 0} /> current visitors
-      </div>
+      <div className="text-sm">{liveUsersCount} current visitors</div>
     </div>
   );
 };

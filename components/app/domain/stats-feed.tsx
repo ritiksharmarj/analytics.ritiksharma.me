@@ -1,7 +1,6 @@
 import { StatsFeedSkeleton } from "@/components/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGetAnalyticsStats } from "@/hooks/use-analytics";
-import NumberFlow from "@number-flow/react";
 import { ActivityIcon, EyeIcon, GlobeIcon, UsersIcon } from "lucide-react";
 
 type Props = {
@@ -47,7 +46,7 @@ export const StatsFeed = ({ websiteId, from, to }: Props) => {
             <data.icon className="size-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <NumberFlow className="text-2xl font-bold" value={data.value} />
+            <div className="text-2xl font-bold">{data.value}</div>
           </CardContent>
         </Card>
       ))}
