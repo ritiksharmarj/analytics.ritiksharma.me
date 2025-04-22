@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "minify:script": "terser public/analytics.js -o public/script.js -c -m",
+    "build": "pnpm minify:script && next build",
     "start": "next start",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
@@ -51,6 +52,7 @@
     "@types/react-dom": "^19",
     "drizzle-kit": "^0.30.6",
     "tailwindcss": "^4",
+    "terser": "^5.39.0",
     "tsx": "^4.19.3",
     "tw-animate-css": "^1.2.5",
     "typescript": "^5"
