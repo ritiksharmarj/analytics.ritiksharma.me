@@ -1,6 +1,15 @@
 import { ROUTES } from "@/lib/routes";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { highlight } from "sugar-high";
+
+export const metadata: Metadata = {
+  title: "Docs",
+  openGraph: {
+    title: "Docs",
+    url: ROUTES.DOCS,
+  },
+};
 
 export default function DocsPage() {
   const scriptSnippet = `<script defer src="https://analytics.ritiksharma.me/script.js"></script>`;

@@ -3,9 +3,18 @@ import { WebsiteFeed } from "@/components/app/dashboard/website-feed";
 import { WebsiteFeedSkeleton } from "@/components/skeleton";
 import { auth } from "@/lib/auth";
 import { ROUTES } from "@/lib/routes";
+import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import * as React from "react";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  openGraph: {
+    title: "Dashboard",
+    url: ROUTES.DASHBOARD,
+  },
+};
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({ headers: await headers() });

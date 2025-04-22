@@ -1,10 +1,42 @@
 import { AnalyticsPeriod } from "@/components/app/domain/analytics-period";
 import { LiveUsersFeed } from "@/components/app/domain/live-users-feed";
+import { SITE_CONFIG } from "@/lib/constants";
 import { db } from "@/lib/db";
+import { ROUTES } from "@/lib/routes";
 import { startOfDay, subDays } from "date-fns";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import * as React from "react";
 import { AnalyticsFeed } from "./analytics-feed";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ domain: string }>;
+}): Promise<Metadata> {
+  const { domain } = await params;
+  const website = await db.query.websites.findFirst({
+    where: (websites, { eq }) => eq(websites.domain, domain),
+  });
+
+  if (!website) {
+    return {
+      title: "Domain not found",
+      description: "The requested page could not be found",
+    };
+  }
+
+  return {
+    title: website.name,
+    description: SITE_CONFIG.DESCRIPTION,
+    openGraph: {
+      title: website.name,
+      description: SITE_CONFIG.DESCRIPTION,
+      type: "website",
+      url: `${ROUTES.DASHBOARD}/${website.domain}`,
+    },
+  };
+}
 
 const defaultValue = {
   from: startOfDay(subDays(new Date(), 6)).toISOString(),
