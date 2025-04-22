@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "minify:script": "terser public/analytics.js -o public/script.js -c -m",
-    "build": "pnpm minify:script && next build",
+    "build": "pnpm run minify:script && next build",
     "start": "next start",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
