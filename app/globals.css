@@ -33,6 +33,19 @@
 }
 
 @layer base {
+  :root {
+    /* sugar-high */
+    --sh-class: #2d5e9d;  
+    --sh-identifier: #414141;  
+    --sh-sign: #8996a3;  
+    --sh-property: #6f42c1;  
+    --sh-entity: #249a97;  
+    --sh-jsxliterals: #6266d1;  
+    --sh-string: #22863a;  
+    --sh-keyword: #d32f2f;  
+    --sh-comment: #aaaaaa;
+  }
+
   *,
   ::after,
   ::before,

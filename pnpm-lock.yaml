@@ -83,6 +83,9 @@ importers:
       sonner:
         specifier: ^2.0.3
         version: 2.0.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      sugar-high:
+        specifier: ^0.9.3
+        version: 0.9.3
       tailwind-merge:
         specifier: ^3.0.2
         version: 3.0.2
@@ -2351,6 +2354,9 @@ packages:
       babel-plugin-macros:
         optional: true
 
+  sugar-high@0.9.3:
+    resolution: {integrity: sha512-sjJH8J76D1dRMU3QINnsYr1wfQyXbyEVQQvdgzJvIer6mkgM8ahB9fNrb+FDWzRKsLuITiBOR0ZbbhDZDUbqjg==}
+
   tailwind-merge@3.0.2:
     resolution: {integrity: sha512-l7z+OYZ7mu3DTqrL88RiKrKIqO3NcpEO8V/Od04bNpvk0kiIFndGEoqfuzvj4yuhRkHKjRkII2z+KS2HfPcSxw==}
 
@@ -4282,6 +4288,8 @@ snapshots:
     dependencies:
       client-only: 0.0.1
       react: 19.0.0
+
+  sugar-high@0.9.3: {}
 
   tailwind-merge@3.0.2: {}
 

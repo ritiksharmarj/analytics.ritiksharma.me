@@ -1,5 +1,6 @@
 import { ROUTES } from "@/lib/routes";
 import Link from "next/link";
+import { highlight } from "sugar-high";
 
 export default function DocsPage() {
   const scriptSnippet = `<script defer src="https://analytics.ritiksharma.me/script.js"></script>`;
@@ -30,30 +31,21 @@ export default function DocsPage() {
         </h2>
         <p>
           To add analytics to your website, add the following script tag to the{" "}
-          <code className="rounded-sm bg-card text-card-foreground px-1 py-0.5 font-mono text-sm border">
-            &lt;head&gt;...&lt;/head&gt;
-          </code>{" "}
-          section of your website's HTML.
+          <Code text="&lt;head&gt;...&lt;/head&gt;" /> section of your website's
+          HTML.
         </p>
-        <pre className="overflow-x-auto rounded-sm bg-muted p-4">
-          <code className="language-js text-sm">{scriptSnippet}</code>
-        </pre>
+
+        <CodeBlock code={scriptSnippet} />
+
         <p>
-          Make sure to include the{" "}
-          <code className="rounded-sm bg-card text-card-foreground px-1 py-0.5 font-mono text-sm border">
-            defer
-          </code>{" "}
-          attribute. This allows your page content to load without waiting for
-          the analytics script, ensuring better performance.
+          Make sure to include the <Code text="async" /> or{" "}
+          <Code text="defer" /> attribute. It allows your page to load without
+          waiting for the script.
         </p>
         <p>
           Note: The script will only collect data when accessed from the domain
           you registered in Step 1. It will ignore data from development
-          environments like{" "}
-          <code className="rounded-sm bg-card text-card-foreground px-1 py-0.5 font-mono text-sm border">
-            localhost
-          </code>
-          .
+          environments like <Code text="localhost" />
         </p>
       </section>
 
@@ -66,14 +58,29 @@ export default function DocsPage() {
           with the script to ensure it sends the first page view.
         </p>
         <p>
-          Go to the{" "}
-          <code className="rounded-sm bg-card text-card-foreground px-1 py-0.5 font-mono text-sm border">
-            dashboard/:siteId
-          </code>{" "}
-          to verify that the page view has been sent and is displayed on the
-          charts.
+          Go to the <Code text="dashboard/:siteId" /> to verify that the page
+          view has been sent and is displayed on the charts.
         </p>
       </section>
     </div>
   );
 }
+
+const CodeBlock = ({ code }: { code: string }) => {
+  const html = highlight(code);
+
+  return (
+    <pre className="overflow-x-auto rounded-sm bg-muted p-4 text-sm">
+      {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+      <code dangerouslySetInnerHTML={{ __html: html }} />
+    </pre>
+  );
+};
+
+const Code = ({ text }: { text: string }) => {
+  return (
+    <code className="rounded-sm bg-card text-card-foreground px-1 py-0.5 font-mono text-sm border">
+      {text}
+    </code>
+  );
+};
