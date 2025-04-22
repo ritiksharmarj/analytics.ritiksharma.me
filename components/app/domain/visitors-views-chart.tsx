@@ -1,5 +1,6 @@
 "use client";
 
+import { TrafficChartSkeleton } from "@/components/skeleton";
 import { Card } from "@/components/ui/card";
 import {
   type ChartConfig,
@@ -55,15 +56,10 @@ export const VisitorsViewsChart = ({ websiteId, from, to, period }: Props) => {
     [trafficStats, from, to, period],
   );
 
-  if (isLoading)
-    return (
-      <Card className="col-span-full max-h-[460px]">
-        <div>chart data loading...</div>
-      </Card>
-    );
+  if (isLoading) return <TrafficChartSkeleton />;
 
   return (
-    <Card className="col-span-full max-h-[460px]">
+    <Card className="col-span-full max-h-[400px]">
       <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
         <BarChart accessibilityLayer data={chartData}>
           <CartesianGrid vertical={false} />
