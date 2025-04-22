@@ -34,7 +34,7 @@ export const TopCountriesFeed = ({ websiteId, from, to }: Props) => {
         <CardContent>
           <div className="space-y-4 text-sm">
             {!topCountriesWithName?.length ? (
-              <div>No countries data available.</div>
+              <div>No data available</div>
             ) : (
               topCountriesWithName.map((item) => (
                 <div

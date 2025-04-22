@@ -26,7 +26,7 @@ export const TopOSFeed = ({ websiteId, from, to }: Props) => {
         <CardContent>
           <div className="space-y-4 text-sm">
             {!topOS?.length ? (
-              <div>No OS data available.</div>
+              <div>No data available</div>
             ) : (
               topOS.map((item) => (
                 <div

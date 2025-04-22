@@ -26,7 +26,7 @@ export const TopBrowsersFeed = ({ websiteId, from, to }: Props) => {
         <CardContent>
           <div className="space-y-4 text-sm">
             {!topBrowsers?.length ? (
-              <div>No browsers data available.</div>
+              <div>No data available</div>
             ) : (
               topBrowsers.map((item) => (
                 <div

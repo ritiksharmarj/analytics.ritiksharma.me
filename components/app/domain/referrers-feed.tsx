@@ -26,7 +26,7 @@ export const TopReferrersFeed = ({ websiteId, from, to }: Props) => {
         <CardContent>
           <div className="space-y-4 text-sm">
             {!topReferrers?.length ? (
-              <div>No referrers data available.</div>
+              <div>No data available</div>
             ) : (
               topReferrers.map((item) => (
                 <div

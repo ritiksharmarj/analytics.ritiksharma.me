@@ -26,7 +26,7 @@ export const TopDevicesFeed = ({ websiteId, from, to }: Props) => {
         <CardContent>
           <div className="space-y-4 text-sm">
             {!topDevices?.length ? (
-              <div>No devices data available.</div>
+              <div>No data available</div>
             ) : (
               topDevices.map((item) => (
                 <div
