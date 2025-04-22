@@ -1,4 +1,4 @@
-((window, document) => {
+(() => {
   const endpoint = "https://analytics.ritiksharma.me/api/events";
 
   let initialPageViewSent = false;
@@ -92,4 +92,4 @@
       sendPageView();
     });
   });
-})(window, document);
+})();
