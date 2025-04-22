@@ -16,6 +16,7 @@ import { ROUTES } from "@/lib/routes";
 import { BookOpenIcon, GitBranchIcon, LogOutIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { LogoIcon } from "./icons";
 
 export const AppHeader = () => {
   const router = useRouter();
@@ -23,7 +24,9 @@ export const AppHeader = () => {
 
   return (
     <div className="flex h-20 items-center justify-between">
-      <div>Analytics</div>
+      <Link href={ROUTES.ROOT} className="focus-visible:outline-hidden">
+        <LogoIcon className="h-6 w-auto" />
+      </Link>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
