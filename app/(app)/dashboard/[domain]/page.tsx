@@ -1,11 +1,13 @@
 import { AnalyticsPeriod } from "@/components/app/domain/analytics-period";
 import { LiveUsersFeed } from "@/components/app/domain/live-users-feed";
+import { auth } from "@/lib/auth";
 import { SITE_CONFIG } from "@/lib/constants";
 import { db } from "@/lib/db";
 import { ROUTES } from "@/lib/routes";
 import { startOfDay, subDays } from "date-fns";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { headers } from "next/headers";
+import { notFound, redirect } from "next/navigation";
 import * as React from "react";
 import { AnalyticsFeed } from "./analytics-feed";
 
@@ -51,9 +53,12 @@ export default async function DomainPage({
 }) {
   const { domain } = await params;
 
-  // find website
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session) redirect(ROUTES.ROOT);
+
   const website = await db.query.websites.findFirst({
-    where: (websites, { eq }) => eq(websites.domain, domain),
+    where: (websites, { eq, and }) =>
+      and(eq(websites.domain, domain), eq(websites.userId, session.user.id)),
   });
 
   if (!website) notFound();
