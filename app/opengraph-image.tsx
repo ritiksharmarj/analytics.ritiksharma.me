@@ -42,16 +42,20 @@ export default async function Image() {
           width: "100%",
           height: "100%",
           flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "60px",
         }}
       >
-        <LogoIcon style={{ width: "auto", height: "32px" }} />
+        <LogoIcon width="400px" height="87px" />
 
         <span
           style={{
-            fontSize: "3.5rem",
+            fontSize: "3rem",
             lineHeight: 1,
             fontWeight: 400,
             textAlign: "center",
+            letterSpacing: "-0.9px",
           }}
         >
           {SITE_CONFIG.DESCRIPTION}
