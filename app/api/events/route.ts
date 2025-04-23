@@ -115,19 +115,19 @@ function getDeviceType(screenSize: string, os: string) {
 
   const [width] = screenSize.split("x");
   const DESKTOP_OS = [
-    "Windows",
-    "Linux",
-    "Mac OS",
-    "Chrome OS",
-    "OpenBSD",
-    "Firefox OS",
+    "windows",
+    "linux",
+    "macos",
+    "chromeos",
+    "openbsd",
+    "firefoxos",
   ];
   const MOBILE_OS = [
-    "iOS",
-    "Blackberry OS",
-    "Android",
-    "Windows Phone",
-    "Windows Mobile",
+    "ios",
+    "blackberryos",
+    "android",
+    "windows.phone",
+    "windows.mobile",
   ];
   const DESKTOP_SCREEN_WIDTH = 1920;
   const LAPTOP_SCREEN_WIDTH = 1024;
@@ -140,7 +140,7 @@ function getDeviceType(screenSize: string, os: string) {
   };
 
   if (DESKTOP_OS.includes(os)) {
-    if (os === "Chrome OS" || Number(width) < DESKTOP_SCREEN_WIDTH) {
+    if (os === "chromeos" || Number(width) < DESKTOP_SCREEN_WIDTH) {
       return DEVICE_TYPE.LAPTOP;
     }
 
