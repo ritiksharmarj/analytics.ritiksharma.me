@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { fontMono, fontSans } from "@/assets/fonts";
 import { SITE_CONFIG } from "@/lib/constants";
+import Script from "next/script";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
@@ -43,6 +44,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${fontSans.variable} ${fontMono.variable}`}>
+      <head>
+        <Script
+          src="https://analytics.ritiksharma.me/script.js"
+          strategy="afterInteractive"
+        />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>
