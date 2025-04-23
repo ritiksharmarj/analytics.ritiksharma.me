@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 
 const scriptSnippet = `<script defer src="https://analytics.ritiksharma.me/script.js"></script>`;
 const nextSnippet = `<head>
-<Script
-  src="https://analytics.ritiksharma.me/script.js"
-  strategy="afterInteractive"
-/>
+  <Script
+    src="https://analytics.ritiksharma.me/script.js"
+    strategy="afterInteractive"
+  />
 </head>`;
 
 export default function DocsPage() {
