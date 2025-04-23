@@ -11,9 +11,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function DocsPage() {
-  const scriptSnippet = `<script defer src="https://analytics.ritiksharma.me/script.js"></script>`;
+const scriptSnippet = `<script defer src="https://analytics.ritiksharma.me/script.js"></script>`;
+const nextSnippet = `<head>
+<Script
+  src="https://analytics.ritiksharma.me/script.js"
+  strategy="afterInteractive"
+/>
+</head>`;
 
+export default function DocsPage() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 my-16">
       <h1 className="mb-8 text-4xl font-bold tracking-tight">Get started</h1>
@@ -56,6 +62,18 @@ export default function DocsPage() {
           you registered in Step 1. It will ignore data from development
           environments like <Code text="localhost" />
         </p>
+
+        <p>
+          For <span className="font-semibold">static websites</span>, the script
+          must be included on every page you want to track.
+        </p>
+        <p>
+          For <span className="font-semibold">single page applications</span>,
+          add the analytics script to your HTML file or your application’s
+          layout once. (e.g. Next.js)
+        </p>
+
+        <CodeBlock code={nextSnippet} />
       </section>
 
       <section className="space-y-4">
