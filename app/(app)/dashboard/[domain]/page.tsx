@@ -1,7 +1,7 @@
 import { AnalyticsPeriod } from "@/components/app/domain/analytics-period";
 import { LiveUsersFeed } from "@/components/app/domain/live-users-feed";
 import { auth } from "@/lib/auth";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, openGraphImage } from "@/lib/constants";
 import { db } from "@/lib/db";
 import { ROUTES } from "@/lib/routes";
 import { startOfDay, subDays } from "date-fns";
@@ -32,6 +32,7 @@ export async function generateMetadata({
     title: website.name,
     description: SITE_CONFIG.DESCRIPTION,
     openGraph: {
+      ...openGraphImage,
       title: website.name,
       description: SITE_CONFIG.DESCRIPTION,
       type: "website",

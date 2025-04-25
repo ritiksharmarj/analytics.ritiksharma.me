@@ -1,9 +1,21 @@
+import { SITE_CONFIG, openGraphImage } from "@/lib/constants";
 import type { Metadata } from "next";
-import "./globals.css";
-import { fontMono, fontSans } from "@/assets/fonts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { IBM_Plex_Mono, Inter } from "next/font/google";
 import Script from "next/script";
 import Providers from "./providers";
+
+import "./globals.css";
+
+export const sans = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+export const mono = IBM_Plex_Mono({
+  variable: "--font-plex",
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.URL),
@@ -12,17 +24,7 @@ export const metadata: Metadata = {
     template: `%s - ${SITE_CONFIG.NAME}`,
   },
   description: SITE_CONFIG.DESCRIPTION,
-  openGraph: {
-    title: {
-      default: SITE_CONFIG.NAME,
-      template: `%s - ${SITE_CONFIG.NAME}`,
-    },
-    description: SITE_CONFIG.DESCRIPTION,
-    url: SITE_CONFIG.URL,
-    siteName: SITE_CONFIG.NAME,
-    type: "website",
-    locale: "en_US",
-  },
+  openGraph: openGraphImage,
   twitter: {
     card: "summary_large_image",
     creator: "@ritiksharmarj",
@@ -43,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fontSans.variable} ${fontMono.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <head>
         <Script
           src="https://analytics.ritiksharma.me/script.js"

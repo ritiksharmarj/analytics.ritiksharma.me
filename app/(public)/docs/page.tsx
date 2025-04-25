@@ -1,3 +1,4 @@
+import { openGraphImage } from "@/lib/constants";
 import { ROUTES } from "@/lib/routes";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import { highlight } from "sugar-high";
 export const metadata: Metadata = {
   title: "Docs",
   openGraph: {
+    ...openGraphImage,
     title: "Docs",
     url: ROUTES.DOCS,
   },
