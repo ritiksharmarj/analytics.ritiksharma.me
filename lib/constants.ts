@@ -1,9 +1,11 @@
 import { getURL } from "@/lib/utils";
 
 export const SITE_CONFIG = {
-  NAME: "Analytics",
+  NAME: "Analytics - Lightweight Google Analytics Alternative",
+  SUFFIX_NAME: "Analytics",
   URL: "https://analytics.ritiksharma.me",
-  DESCRIPTION: "Lightweight Google Analytics Alternative",
+  DESCRIPTION:
+    "Understand your website traffic with essential insights. No cookies, no personal data collection, just the stats that matter.",
   OG_IMAGE: {
     WIDTH: 1200,
     HEIGHT: 630,
@@ -14,7 +16,7 @@ export const SITE_CONFIG = {
 export const openGraphImage = {
   title: {
     default: SITE_CONFIG.NAME,
-    template: `%s - ${SITE_CONFIG.NAME}`,
+    template: `%s - ${SITE_CONFIG.SUFFIX_NAME}`,
   },
   images: [
     {
