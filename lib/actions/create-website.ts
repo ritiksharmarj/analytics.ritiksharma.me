@@ -11,23 +11,39 @@ import {
 import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 
-export async function createWebsiteAction(values: createWebsiteFormSchemaType) {
+type ActionResponse = {
+  success: boolean;
+  error?: string;
+  type?: "all" | "domain";
+};
+
+export async function createWebsiteAction(
+  values: createWebsiteFormSchemaType,
+): Promise<ActionResponse> {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return { error: "Unauthorized access" };
+  if (!session) return { success: false, error: "Unauthorized access" };
 
   const validatedFields = createWebsiteFormSchema.safeParse(values);
   if (!validatedFields.success) {
-    return { error: "Please enter a valid details." };
+    return {
+      success: false,
+      type: "all",
+      error: "Please enter a valid details.",
+    };
   }
+
+  const domain = normalizeDomain(validatedFields.data.domain);
 
   // Check if domain already exists
   const existingWebsite = await db.query.websites.findFirst({
-    where: (websites, { eq }) =>
-      eq(websites.domain, validatedFields.data.domain),
+    where: (websites, { eq }) => eq(websites.domain, domain),
   });
-  if (existingWebsite) return { error: "This domain is already exist." };
-
-  const domain = normalizeDomain(validatedFields.data.domain);
+  if (existingWebsite)
+    return {
+      success: false,
+      type: "domain",
+      error: "Domain is already exist.",
+    };
 
   try {
     // insert the new website
@@ -36,9 +52,10 @@ export async function createWebsiteAction(values: createWebsiteFormSchemaType) {
       name: validatedFields.data.name,
       domain,
     });
-  } catch (error) {
-    return { error: "Failed to create new website." };
-  }
 
-  revalidateTag(`websites_${session.user.id}`);
+    revalidateTag(`websites_${session.user.id}`);
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: "Failed to create new website." };
+  }
 }

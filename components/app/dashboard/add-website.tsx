@@ -47,9 +47,24 @@ export const AddWebsite = () => {
     startTransition(async () => {
       const res = await createWebsiteAction(values);
 
-      if (res?.error) {
-        toast.error(res.error);
-        form.setError("domain", { message: res.error }, { shouldFocus: true });
+      if (!res.success) {
+        switch (res.type) {
+          case "domain":
+            form.setError(
+              "domain",
+              { message: res.error },
+              { shouldFocus: true },
+            );
+            break;
+          case "all":
+            form.setError("domain", { message: res.error });
+            form.setError("name", { message: res.error });
+            break;
+
+          default:
+            toast.error(res.error);
+            break;
+        }
         return;
       }
 
