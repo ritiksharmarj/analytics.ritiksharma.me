@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Code } from "@/components/ui/code";
 import { CodeBlock } from "@/components/ui/code-block";
 import { ROUTES } from "@/lib/routes";
+import hero from "@/public/hero.png";
 import { GitBranchIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { GoogleSignIn } from "./google-sign-in";
 
@@ -64,6 +66,18 @@ export default async function Home() {
             <GitBranchIcon /> Open Source
           </a>
         </Button>
+      </div>
+
+      <div className="md:-mx-4">
+        <Image
+          src={hero}
+          alt="hero"
+          width={1024}
+          height={576}
+          className="rounded-md"
+          quality={100}
+          placeholder="blur"
+        />
       </div>
 
       <div>
