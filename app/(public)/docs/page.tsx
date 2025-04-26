@@ -1,8 +1,9 @@
+import { Code } from "@/components/ui/code";
+import { CodeBlock } from "@/components/ui/code-block";
 import { openGraphImage } from "@/lib/constants";
 import { ROUTES } from "@/lib/routes";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { highlight } from "sugar-high";
 
 export const metadata: Metadata = {
   title: "Docs",
@@ -35,7 +36,7 @@ export default function DocsPage() {
           dashboard and{" "}
           <Link
             href={ROUTES.DASHBOARD}
-            className="text-primary underline-offset-4 underline decoration-border hover:decoration-primary transition-colors"
+            className="underline-offset-4 underline hover:decoration-2"
           >
             add the website's domain.
           </Link>
@@ -94,22 +95,3 @@ export default function DocsPage() {
     </div>
   );
 }
-
-const CodeBlock = ({ code }: { code: string }) => {
-  const html = highlight(code);
-
-  return (
-    <pre className="overflow-x-auto rounded-sm bg-muted p-4 text-sm">
-      {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
-      <code dangerouslySetInnerHTML={{ __html: html }} />
-    </pre>
-  );
-};
-
-const Code = ({ text }: { text: string }) => {
-  return (
-    <code className="rounded-sm bg-card text-card-foreground px-1 py-0.5 font-mono text-sm border">
-      {text}
-    </code>
-  );
-};
