@@ -25,7 +25,7 @@ const getCachedWebsites = async (userId: string) => {
 export const WebsiteFeed = async ({ userId }: { userId: string }) => {
   const websites = await getCachedWebsites(userId);
 
-  if (!websites.length) return <div>No websites</div>;
+  if (!websites.length) return <div>No website available</div>;
 
   return (
     <>
