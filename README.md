@@ -12,7 +12,7 @@
   <a href="#features">Features</a> ·
   <a href="#tech-stack">Tech Stack</a> ·
   <a href="#self-hosting">Self-hosting</a> ·
-  <a href="#contributing">Contributing</a>
+  <a href="#local-development">Local Development</a>
 </p>
 
 
@@ -71,7 +71,7 @@ pnpm db:push
 Step 5: Deploy to Vercel and add all environment variables to your Vercel project settings. Change `NODE_ENV` to "production" and update `BETTER_AUTH_URL` with your domain URL.
 
 
-## Contributing
+## Local Development
 
 Set up local dev environment:
 
