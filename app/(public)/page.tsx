@@ -1,3 +1,4 @@
+import PeerlistLaunchpadIcon from "@/components/icons/peerlist-launchpad";
 import { Button } from "@/components/ui/button";
 import { Code } from "@/components/ui/code";
 import { CodeBlock } from "@/components/ui/code-block";
@@ -46,7 +47,16 @@ export default async function Home() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 my-16 space-y-12">
       <div>
-        <h1 className="text-2xl font-medium capitalize">
+        <a
+          href="https://peerlist.io/ritiksharmarj/project/analytics"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="focus-visible:outline-hidden"
+        >
+          <PeerlistLaunchpadIcon className="hover:scale-105 transition-transform" />
+        </a>
+
+        <h1 className="text-2xl font-medium capitalize mt-4">
           Lightweight Google Analytics Alternative
         </h1>
         <p className="text-muted-foreground mt-4">
