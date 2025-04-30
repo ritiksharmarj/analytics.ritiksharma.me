@@ -2,7 +2,6 @@
   "name": "analytics.ritiksharma.me",
   "description": "lightweight google analytics alternative",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "minify:script": "terser public/analytics.js -o public/script.js -c -m",
