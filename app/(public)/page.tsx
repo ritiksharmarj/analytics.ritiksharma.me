@@ -47,16 +47,7 @@ export default async function Home() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 my-16 space-y-12">
       <div>
-        <a
-          href="https://peerlist.io/ritiksharmarj/project/analytics"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="focus-visible:outline-hidden"
-        >
-          <PeerlistLaunchpadIcon className="hover:scale-105 transition-transform" />
-        </a>
-
-        <h1 className="text-2xl font-medium capitalize mt-4">
+        <h1 className="text-2xl font-medium capitalize">
           Lightweight Google Analytics Alternative
         </h1>
         <p className="text-muted-foreground mt-4">
