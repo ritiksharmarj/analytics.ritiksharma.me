@@ -74,13 +74,8 @@ export const AppHeader = () => {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={async () => {
-              await signOut({
-                fetchOptions: {
-                  onSuccess() {
-                    router.push(ROUTES.ROOT);
-                  },
-                },
-              });
+              await signOut();
+              router.push(ROUTES.ROOT);
             }}
           >
             <LogOutIcon />
