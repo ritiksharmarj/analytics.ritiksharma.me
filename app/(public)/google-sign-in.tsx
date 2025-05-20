@@ -16,13 +16,11 @@ export const GoogleSignIn = () => {
       provider: "google",
       callbackURL: ROUTES.DASHBOARD,
       fetchOptions: {
-        onResponse: () => {
-          setIsPending(false);
-        },
         onRequest: () => {
           setIsPending(true);
         },
         onError: (ctx: { error: { message: string } }) => {
+          setIsPending(false);
           toast.error(ctx.error.message);
         },
       },
