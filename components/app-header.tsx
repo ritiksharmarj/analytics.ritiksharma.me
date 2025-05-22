@@ -78,6 +78,7 @@ export const AppHeader = () => {
                 fetchOptions: {
                   onSuccess() {
                     router.push(ROUTES.ROOT);
+                    router.refresh();
                   },
                 },
               });
