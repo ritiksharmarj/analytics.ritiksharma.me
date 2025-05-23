@@ -77,8 +77,7 @@ export const AppHeader = () => {
               await signOut({
                 fetchOptions: {
                   onSuccess() {
-                    router.push(ROUTES.ROOT);
-                    router.refresh();
+                    window.location.href = ROUTES.ROOT;
                   },
                 },
               });
