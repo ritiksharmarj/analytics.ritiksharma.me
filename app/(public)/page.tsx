@@ -130,6 +130,14 @@ export default async function Home() {
         >
           Twitter
         </a>
+        <a
+          href="https://ritiksharma.me/blog/lightweight-google-analytics-alternative"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline-offset-4 underline hover:decoration-2"
+        >
+          Article
+        </a>
       </div>
     </div>
   );

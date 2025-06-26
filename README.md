@@ -15,11 +15,9 @@
   <a href="#local-development">Local Development</a>
 </p>
 
-
 ## Introduction
 
-Understand your website traffic with essential insights. No cookies, no personal data collection, just the stats that matter.
-
+Understand your website traffic with essential insights. No cookies, no personal data collection, just the stats that matter. Here is the detailed [article](https://ritiksharma.me/blog/lightweight-google-analytics-alternative).
 
 ## Features
 
@@ -29,7 +27,6 @@ Understand your website traffic with essential insights. No cookies, no personal
 **Simple Interface**: Clean and intuitive dashboard to easily understand your data.<br/>
 **Own Your Data**: Self-hostable solution giving you full control over your analytics.<br/>
 **Easy Integration**: Add a simple script tag to your website and start tracking.<br/>
-
 
 ## Tech Stack
 
@@ -41,17 +38,18 @@ Understand your website traffic with essential insights. No cookies, no personal
 - [BetterAuth](https://www.better-auth.com/) – auth
 - [Vercel](https://vercel.com/) – deployments
 
-
 ## Self-Hosting
 
 You can self-host for full control over your analytics.
 
 Step 1: Fork and clone the repo
+
 ```
 git clone https://github.com/<username>/analytics.ritiksharma.me.git
 ```
 
 Step 2: Copy .env.example to .env
+
 ```
 cp .env.example .env
 ```
@@ -63,13 +61,13 @@ Generate a [secret key](https://www.better-auth.com/docs/installation#set-enviro
 Get your Google credentials (more info [here](https://www.better-auth.com/docs/authentication/google#get-your-google-credentials)) and add the client ID and client secret to .env for `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`
 
 Step 4: Install dependencies and run the command to push the database tables to Neon DB
+
 ```
 pnpm i
 pnpm db:push
 ```
 
 Step 5: Deploy to Vercel and add all environment variables to your Vercel project settings. Change `NODE_ENV` to "production" and update `BETTER_AUTH_URL` with your domain URL.
-
 
 ## Local Development
 
@@ -80,11 +78,13 @@ Follow Steps 1-4 from the [self hosting](#self-hosting) section, then:
 Step 4: Optionally create a dev branch in the Neon DB and add its connection string to .env for `DATABASE_URL`
 
 Step 5: Sign in first to create an initial user and seed the data
+
 ```
 pnpm db:seed
 ```
 
 Step 6: Run in dev mode
+
 ```
 pnpm dev
 ```
