@@ -1,7 +1,7 @@
-import { SITE_CONFIG, openGraphImage } from "@/lib/constants";
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter } from "next/font/google";
 import Script from "next/script";
+import { openGraphImage, SITE_CONFIG } from "@/lib/constants";
 import Providers from "./providers";
 
 import "./globals.css";

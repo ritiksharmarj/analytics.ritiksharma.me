@@ -1,13 +1,13 @@
 "use client";
 
-import { Toaster } from "@/components/ui/sonner";
 import {
+  isServer,
   QueryClient,
   QueryClientProvider,
-  isServer,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Toaster } from "@/components/ui/sonner";
 
 const makeQueryClient = () => {
   return new QueryClient({
@@ -21,7 +21,7 @@ const makeQueryClient = () => {
   });
 };
 
-let browserQueryClient: QueryClient | undefined = undefined;
+let browserQueryClient: QueryClient | undefined;
 
 const getQueryClient = () => {
   if (isServer) {

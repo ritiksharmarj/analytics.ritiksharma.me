@@ -1,14 +1,13 @@
-import { AnalyticsPeriod } from "@/components/app/domain/analytics-period";
-import { LiveUsersFeed } from "@/components/app/domain/live-users-feed";
-import { auth } from "@/lib/auth";
-import { SITE_CONFIG, openGraphImage } from "@/lib/constants";
-import { db } from "@/lib/db";
-import { ROUTES } from "@/lib/routes";
 import { startOfDay, subDays } from "date-fns";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
-import * as React from "react";
+import { AnalyticsPeriod } from "@/components/app/domain/analytics-period";
+import { LiveUsersFeed } from "@/components/app/domain/live-users-feed";
+import { auth } from "@/lib/auth";
+import { openGraphImage, SITE_CONFIG } from "@/lib/constants";
+import { db } from "@/lib/db";
+import { ROUTES } from "@/lib/routes";
 import { AnalyticsFeed } from "./analytics-feed";
 
 export async function generateMetadata({

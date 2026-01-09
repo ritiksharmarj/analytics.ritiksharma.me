@@ -1,7 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
 import type { Pageviews } from "@/lib/db/schema";
 import { API_ROUTES } from "@/lib/routes";
 import { getRequest } from "@/lib/services/axios";
-import { useQuery } from "@tanstack/react-query";
 
 export const analyticsQueryKeys = {
   analyticsPageviews: "analyticsPageviews",
@@ -51,7 +51,9 @@ export const useGetAnalyticsPageviews = ({
 
 export const useGetAnalyticsLiveUsersCount = ({
   websiteId,
-}: { websiteId: string }) => {
+}: {
+  websiteId: string;
+}) => {
   const getAnalyticsLiveUsersCount = () => {
     return getRequest({
       url: API_ROUTES.CURRENT_VISITORS(websiteId),

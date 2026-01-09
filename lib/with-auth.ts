@@ -1,7 +1,6 @@
 import { getSessionCookie } from "better-auth/cookies";
 import { type NextRequest, NextResponse } from "next/server";
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 type Handler = (req: NextRequest, context?: any) => Promise<Response>;
 
 export function withAuth(handler: Handler): Handler {

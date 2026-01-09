@@ -1,6 +1,6 @@
+import { ActivityIcon, EyeIcon, GlobeIcon, UsersIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ActivityIcon, EyeIcon, GlobeIcon, UsersIcon } from "lucide-react";
 
 const StatsFeedSkeleton = () => {
   const skeletonItems = [

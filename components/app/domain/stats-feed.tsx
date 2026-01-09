@@ -1,7 +1,7 @@
+import { ActivityIcon, EyeIcon, GlobeIcon, UsersIcon } from "lucide-react";
 import { StatsFeedSkeleton } from "@/components/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGetAnalyticsStats } from "@/hooks/use-analytics";
-import { ActivityIcon, EyeIcon, GlobeIcon, UsersIcon } from "lucide-react";
 
 type Props = {
   websiteId: string;

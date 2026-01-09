@@ -1,5 +1,7 @@
 "use client";
 
+import { formatISO, startOfDay, subDays, subHours, subMonths } from "date-fns";
+import { parseAsString, useQueryStates } from "nuqs";
 import {
   Select,
   SelectContent,
@@ -8,8 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { formatISO, startOfDay, subDays, subHours, subMonths } from "date-fns";
-import { parseAsString, useQueryStates } from "nuqs";
 
 type Props = {
   defaultValue: {

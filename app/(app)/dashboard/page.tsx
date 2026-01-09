@@ -1,13 +1,13 @@
+import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import * as React from "react";
 import { AddWebsite } from "@/components/app/dashboard/add-website";
 import { WebsiteFeed } from "@/components/app/dashboard/website-feed";
 import { WebsiteFeedSkeleton } from "@/components/skeleton";
 import { auth } from "@/lib/auth";
 import { openGraphImage } from "@/lib/constants";
 import { ROUTES } from "@/lib/routes";
-import type { Metadata } from "next";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
-import * as React from "react";
 
 export const metadata: Metadata = {
   title: "Dashboard",

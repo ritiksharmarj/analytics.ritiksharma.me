@@ -1,9 +1,9 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import { Code } from "@/components/ui/code";
 import { CodeBlock } from "@/components/ui/code-block";
 import { openGraphImage } from "@/lib/constants";
 import { ROUTES } from "@/lib/routes";
-import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Docs",

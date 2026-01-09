@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
+import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
@@ -8,8 +10,6 @@ import {
   createWebsiteFormSchema,
   type createWebsiteFormSchemaType,
 } from "@/lib/zod/schema";
-import { revalidateTag } from "next/cache";
-import { headers } from "next/headers";
 
 type ActionResponse = {
   success: boolean;
@@ -56,6 +56,8 @@ export async function createWebsiteAction(
     revalidateTag(`websites_${session.user.id}`);
     return { success: true };
   } catch (error) {
+    console.log(error);
+
     return { success: false, error: "Failed to create new website." };
   }
 }

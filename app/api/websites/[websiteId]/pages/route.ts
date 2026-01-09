@@ -1,10 +1,10 @@
+import { endOfDay, parseISO, startOfDay } from "date-fns";
+import { and, count, desc, eq, gte, lte } from "drizzle-orm";
+import { type NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
 import { withAuth } from "@/lib/with-auth";
 import { analyticsPeriodSchema } from "@/lib/zod/schema";
-import { endOfDay, parseISO, startOfDay } from "date-fns";
-import { and, count, desc, eq, gte, lte } from "drizzle-orm";
-import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = withAuth(
   async (
@@ -51,6 +51,8 @@ export const GET = withAuth(
 
       return NextResponse.json(pages, { status: 200 });
     } catch (error) {
+      console.log(error);
+
       return NextResponse.json(
         { error: "Something went wrong!" },
         { status: 500 },

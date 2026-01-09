@@ -18,29 +18,27 @@ export const TopBrowsersFeed = ({ websiteId, from, to }: Props) => {
   if (isLoading) return <TopFeedSkeleton title="Browsers" />;
 
   return (
-    <>
-      <Card className="col-span-full md:col-span-2">
-        <CardHeader>
-          <CardTitle>Browsers</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4 text-sm">
-            {!topBrowsers?.length ? (
-              <div>No data available</div>
-            ) : (
-              topBrowsers.map((item) => (
-                <div
-                  key={item.browser}
-                  className="flex items-center justify-between gap-4"
-                >
-                  <div className="capitalize">{item.browser}</div>
-                  <div className="font-medium">{item.count}</div>
-                </div>
-              ))
-            )}
-          </div>
-        </CardContent>
-      </Card>
-    </>
+    <Card className="col-span-full md:col-span-2">
+      <CardHeader>
+        <CardTitle>Browsers</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4 text-sm">
+          {!topBrowsers?.length ? (
+            <div>No data available</div>
+          ) : (
+            topBrowsers.map((item) => (
+              <div
+                key={item.browser}
+                className="flex items-center justify-between gap-4"
+              >
+                <div className="capitalize">{item.browser}</div>
+                <div className="font-medium">{item.count}</div>
+              </div>
+            ))
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 };

@@ -1,5 +1,6 @@
 "use client";
 
+import { parseAsString, useQueryStates } from "nuqs";
 import { TopBrowsersFeed } from "@/components/app/domain/browsers-feed";
 import { TopCountriesFeed } from "@/components/app/domain/countries-feed";
 import { TopDevicesFeed } from "@/components/app/domain/devices-feed";
@@ -8,7 +9,6 @@ import { TopPagesFeed } from "@/components/app/domain/pages-feed";
 import { TopReferrersFeed } from "@/components/app/domain/referrers-feed";
 import { StatsFeed } from "@/components/app/domain/stats-feed";
 import { VisitorsViewsChart } from "@/components/app/domain/visitors-views-chart";
-import { parseAsString, useQueryStates } from "nuqs";
 
 type Props = {
   defaultValue: {

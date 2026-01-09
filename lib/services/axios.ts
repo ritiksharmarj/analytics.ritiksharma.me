@@ -1,9 +1,9 @@
-import { getURL } from "@/lib/utils";
 import axios, {
   type AxiosError,
   type AxiosRequestConfig,
   type AxiosResponse,
 } from "axios";
+import { getURL } from "@/lib/utils";
 
 const BASE_URL = getURL();
 

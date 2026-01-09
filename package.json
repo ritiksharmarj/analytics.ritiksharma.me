@@ -7,11 +7,10 @@
     "minify:script": "terser public/analytics.js -o public/script.js -c -m",
     "build": "pnpm run minify:script && next build",
     "start": "next start",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
+    "lint": "biome check",
+    "lint:fix": "biome check --write",
     "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
     "db:seed": "tsx lib/db/seed.ts"
   },
   "dependencies": {
@@ -46,7 +45,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.3.11",
     "@tailwindcss/postcss": "^4",
     "@tanstack/react-query-devtools": "^5.74.4",
     "@types/node": "^20",

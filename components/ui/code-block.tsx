@@ -5,7 +5,7 @@ export const CodeBlock = ({ code }: { code: string }) => {
 
   return (
     <pre className="overflow-x-auto rounded-sm bg-muted p-4 text-sm">
-      {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+      {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <> */}
       <code dangerouslySetInnerHTML={{ __html: html }} />
     </pre>
   );

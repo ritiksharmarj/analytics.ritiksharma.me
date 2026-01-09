@@ -1,6 +1,6 @@
+import { subDays } from "date-fns";
 import type { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
-import { subDays } from "date-fns";
 import pageviewsJson from "./data/pageviews.json";
 
 function getRandomDateLastNDays(days: number): Date {

@@ -1,15 +1,12 @@
+import { subMinutes } from "date-fns";
+import { and, countDistinct, eq, gte } from "drizzle-orm";
+import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { pageviews } from "@/lib/db/schema";
 import { withAuth } from "@/lib/with-auth";
-import { subMinutes } from "date-fns";
-import { and, countDistinct, eq, gte } from "drizzle-orm";
-import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = withAuth(
-  async (
-    req: NextRequest,
-    { params }: { params: Promise<{ websiteId: string }> },
-  ) => {
+  async (_, { params }: { params: Promise<{ websiteId: string }> }) => {
     const { websiteId } = await params;
 
     try {
@@ -29,6 +26,8 @@ export const GET = withAuth(
 
       return NextResponse.json(count, { status: 200 });
     } catch (error) {
+      console.log(error);
+
       return NextResponse.json(
         { error: "Something went wrong!" },
         { status: 500 },

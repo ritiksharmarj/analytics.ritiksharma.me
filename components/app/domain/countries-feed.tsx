@@ -26,29 +26,27 @@ export const TopCountriesFeed = ({ websiteId, from, to }: Props) => {
   }));
 
   return (
-    <>
-      <Card className="col-span-full md:col-span-2">
-        <CardHeader>
-          <CardTitle>Top Countries</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4 text-sm">
-            {!topCountriesWithName?.length ? (
-              <div>No data available</div>
-            ) : (
-              topCountriesWithName.map((item) => (
-                <div
-                  key={item.code}
-                  className="flex items-center justify-between gap-4"
-                >
-                  <div>{item.name}</div>
-                  <div className="font-medium">{item.count}</div>
-                </div>
-              ))
-            )}
-          </div>
-        </CardContent>
-      </Card>
-    </>
+    <Card className="col-span-full md:col-span-2">
+      <CardHeader>
+        <CardTitle>Top Countries</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4 text-sm">
+          {!topCountriesWithName?.length ? (
+            <div>No data available</div>
+          ) : (
+            topCountriesWithName.map((item) => (
+              <div
+                key={item.code}
+                className="flex items-center justify-between gap-4"
+              >
+                <div>{item.name}</div>
+                <div className="font-medium">{item.count}</div>
+              </div>
+            ))
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 };

@@ -1,5 +1,5 @@
-import { Card } from "@/components/ui/card";
 import { LoaderCircleIcon } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 const TrafficChartSkeleton = () => {
   return (
@@ -8,7 +8,6 @@ const TrafficChartSkeleton = () => {
         <div className="relative grow flex">
           <div className="absolute inset-0 flex flex-col justify-between">
             {Array.from({ length: 5 }, (_, i) => (
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               <div key={i} className="w-full border-t border-border/50" />
             ))}
           </div>

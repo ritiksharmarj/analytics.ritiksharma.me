@@ -1,12 +1,11 @@
-import PeerlistLaunchpadIcon from "@/components/icons/peerlist-launchpad";
+import { GitBranchIcon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Code } from "@/components/ui/code";
 import { CodeBlock } from "@/components/ui/code-block";
 import { ROUTES } from "@/lib/routes";
 import hero from "@/public/hero.png";
-import { GitBranchIcon } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import { GoogleSignIn } from "./google-sign-in";
 
 const features = [

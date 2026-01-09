@@ -1,6 +1,6 @@
+import { subDays } from "date-fns";
 import type { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
-import { subDays } from "date-fns";
 import websitesJson from "./data/websites.json";
 
 export default async function seed(db: db) {

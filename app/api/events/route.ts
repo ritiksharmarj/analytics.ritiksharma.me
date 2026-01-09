@@ -1,10 +1,10 @@
+import { startOfHour, startOfMonth } from "date-fns";
+import { type NextRequest, NextResponse } from "next/server";
+import Sniffr from "sniffr";
 import { hash, uuid } from "@/lib/crypto";
 import { db } from "@/lib/db";
 import { pageviews } from "@/lib/db/schema";
 import { normalizeDomain } from "@/lib/utils";
-import { startOfHour, startOfMonth } from "date-fns";
-import { type NextRequest, NextResponse } from "next/server";
-import Sniffr from "sniffr";
 
 export async function POST(req: NextRequest) {
   const payload = await req.json();

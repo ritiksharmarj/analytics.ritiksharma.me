@@ -1,7 +1,7 @@
+import Link from "next/link";
 import { LogoIcon, NotFoundIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/lib/routes";
-import Link from "next/link";
 
 export default function NotFound() {
   return (

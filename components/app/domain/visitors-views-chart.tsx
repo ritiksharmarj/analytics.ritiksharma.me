@@ -1,5 +1,15 @@
 "use client";
 
+import {
+  eachDayOfInterval,
+  eachMonthOfInterval,
+  format,
+  parseISO,
+  startOfDay,
+  startOfMonth,
+} from "date-fns";
+import * as React from "react";
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import { TrafficChartSkeleton } from "@/components/skeleton";
 import { Card } from "@/components/ui/card";
 import {
@@ -14,16 +24,6 @@ import {
   type trafficDataItem,
   useGetAnalyticsStatsTraffic,
 } from "@/hooks/use-analytics";
-import {
-  eachDayOfInterval,
-  eachMonthOfInterval,
-  format,
-  parseISO,
-  startOfDay,
-  startOfMonth,
-} from "date-fns";
-import * as React from "react";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 type Props = {
   websiteId: string;

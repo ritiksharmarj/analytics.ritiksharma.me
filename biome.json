@@ -1,46 +1,53 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "vcs": {
-    "enabled": false,
+    "enabled": true,
     "clientKind": "git",
-    "useIgnoreFile": false
+    "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": false,
-    "ignore": [
-      "dist",
-      "build",
-      ".next",
-      ".vscode",
-      "node_modules",
-      "pnpm-lock.yaml",
-      ".env*",
-      "**/migrations"
-    ]
+    "ignoreUnknown": true,
+    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "lineEnding": "lf"
-  },
-  "organizeImports": {
-    "enabled": true
+    "indentWidth": 2
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
+      "suspicious": {
+        "noUnknownAtRules": "off",
+        "noArrayIndexKey": "off",
+        "noExplicitAny": "off"
+      },
+      "performance": {
+        "noImgElement": "off"
+      },
       "a11y": {
         "noSvgWithoutTitle": "off"
       },
       "style": {
         "noNonNullAssertion": "off"
       }
+    },
+    "domains": {
+      "next": "recommended",
+      "react": "recommended"
     }
   },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "double"
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
     }
   }
 }
