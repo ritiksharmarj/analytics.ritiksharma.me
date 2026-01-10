@@ -1,14 +1,16 @@
-import { getSessionCookie } from "better-auth/cookies";
 import { type NextRequest, NextResponse } from "next/server";
+import { auth } from "./auth";
 
 type Handler = (req: NextRequest, context?: any) => Promise<Response>;
 
 export function withAuth(handler: Handler): Handler {
   return async (req, context) => {
-    const cookies = getSessionCookie(req);
+    const session = await auth.api.getSession({
+      headers: req.headers,
+    });
 
-    if (!cookies) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
     // If authenticated, call the original handler
