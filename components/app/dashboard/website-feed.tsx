@@ -1,4 +1,5 @@
 import { unstable_cache } from "next/cache";
+import { headers } from "next/headers";
 import Link from "next/link";
 import {
   Card,
@@ -6,13 +7,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { ROUTES } from "@/lib/routes";
 
 const getCachedWebsites = async (userId: string) => {
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
   return unstable_cache(
     async () => {
-      return await db.query.websites.findMany({
+      return await db.$withAuth(token).query.websites.findMany({
         where: (websites, { eq }) => eq(websites.userId, userId),
         orderBy: (websites, { desc }) => [desc(websites.createdAt)],
       });
