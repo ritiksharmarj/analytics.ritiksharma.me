@@ -6,6 +6,7 @@ export const config = {
   matcher: [
     "/((?!api|_next/static|_next/image|icon|opengraph-image|sitemap.xml|robots.txt|script.js).*)",
   ],
+  runtime: "nodejs",
 };
 
 export default function middleware(request: NextRequest) {
